@@ -3,7 +3,11 @@ from tkinter import ttk
 from tkinter import filedialog
 from PIL import Image, ImageTk
 import os
+from pathlib import Path
 
+
+dir = os.path.dirname(__file__)
+icon_file = os.path.join(dir, "items", "logo_llm.png")
 
 class App(tk.Frame):
     def __init__(self, master=None):
@@ -11,8 +15,8 @@ class App(tk.Frame):
         self.pack(side="left", fill="both", expand=True)
         self.file_path = ""
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        logo_path = os.path.join(script_dir, "items", "logo_llm.png")
-        self.bg_image = logo_path
+        #logo_path = os.path.join(script_dir, "items", "logo_llm.png")
+        self.bg_image = os.path.join(script_dir, "items", "logo_llm.png")
         # Load and set the background image with transparency
         try:
             self.bg_image = Image.open(self.bg_image)
@@ -53,20 +57,20 @@ class App(tk.Frame):
 
     def run_scripts(self):
         if not self.file_path:
-            self.print_message("No path is given. Please provide a valid path.")
+            self.print_message("No path is given. Please provide a valid path!")
             return
         
         files = os.listdir(self.file_path)
         txt_files = [file for file in files if file.endswith(".txt")]
         
         if not files:
-            self.print_message("There is no file in the path.")
+            self.print_message("There is no file in the path. Please provide a valid path!")
             return
         elif not txt_files:
-            self.print_message("There is no txt file in the path.")
+            self.print_message("There is no txt file in the path. Please provide a valid path!")
             return
         elif len(txt_files) != len(files):
-            self.print_message("There should be only txt files inside the chosen document.")
+            self.print_message("There should be only txt files inside the chosen document. Please provide a valid path!")
             return
         
         script_location = self.file_path
@@ -83,7 +87,6 @@ class App(tk.Frame):
 
 mapp = App()
 
-# Configure styles for buttons
 style = ttk.Style()
 style.configure("Browse.TButton", font=("Arial", 12), padding=6)
 style.configure("Quit.TButton", font=("Arial", 12), padding=6, foreground="red")
@@ -93,7 +96,7 @@ mapp.master.title("Ottoman NLP Toolkit")
 mapp.master.maxsize(1200, 700)
 mapp.master.minsize(600, 400)
 try:
-    mapp.master.iconphoto(True, tk.PhotoImage(file="items/logo.png"))
+    mapp.master.iconphoto(True, tk.PhotoImage(icon_file))
 except tk.TclError:
     print("Icon file not found.")
 mapp.mainloop()
