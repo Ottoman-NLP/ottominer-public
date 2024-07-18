@@ -1,0 +1,13 @@
+Total Tokens: 5004882
+Unique Tokens: 299891
+Token Diversity: 0.05991969441037771
+Average Sentence Length: 248334.68
+Standard Deviation of Sentence Length: 73477.83305281668
+Heard's Law Ratio: 1.0
+Approximate Accuracy: 100.0
+Heap's Law Ratio: 0.6128973485751422
+Heap's Law Accuracy: 61.28973485751422
+Read Duration (seconds): 0.12544012069702148
+Noise Pattern [^\w\s,.?!]: 25
+Noise Pattern ^\d+$: 0
+Noise Pattern [^\x00-\x7F]+: 25

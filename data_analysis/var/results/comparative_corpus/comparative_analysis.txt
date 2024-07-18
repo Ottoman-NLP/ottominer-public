@@ -1,0 +1,65 @@
+Total Tokens:
+  Original: 4999042
+  Cleaned: 5004882
+  Difference: 5840
+
+Unique Tokens:
+  Original: 294927
+  Cleaned: 299891
+  Difference: 4964
+
+Token Diversity:
+  Original: 0.05899670376844204
+  Cleaned: 0.05991969441037771
+  Difference: 0.0009229906419356698
+
+Average Sentence Length:
+  Original: 249566.64
+  Cleaned: 248334.68
+  Difference: -1231.960000000021
+
+Standard Deviation of Sentence Length:
+  Original: 73355.11398607734
+  Cleaned: 73477.83305281668
+  Difference: 122.71906673934427
+
+Heard's Law Ratio:
+  Original: 1.0
+  Cleaned: 1.0
+  Difference: 0.0
+
+Approximate Accuracy:
+  Original: 100.0
+  Cleaned: 100.0
+  Difference: 0.0
+
+Heap's Law Ratio:
+  Original: 0.6032450727504783
+  Cleaned: 0.6128973485751422
+  Difference: 0.00965227582466388
+
+Heap's Law Accuracy:
+  Original: 60.324507275047836
+  Cleaned: 61.28973485751422
+  Difference: 0.9652275824663832
+
+Read Duration (seconds):
+  Original: 0.12192678451538086
+  Cleaned: 0.12544012069702148
+  Difference: 0.003513336181640625
+
+Noise Pattern [^\w\s,.?!]:
+  Original: 25
+  Cleaned: 25
+  Difference: 0
+
+Noise Pattern ^\d+$:
+  Original: 0
+  Cleaned: 0
+  Difference: 0
+
+Noise Pattern [^\x00-\x7F]+:
+  Original: 25
+  Cleaned: 25
+  Difference: 0
+
