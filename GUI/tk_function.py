@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
 import os
+from ..resources.animation import ProgressBar
 
 class Functionality:
     def __init__(self):
@@ -13,6 +14,13 @@ class Functionality:
 
         self.message_box = tk.Text(self, height=10, state="disabled")
         self.message_box.pack(side="bottom", fill="both", expand=True)
+
+        self.selected_process = tk.StringVar()
+        self.create_radio_button("PDF Extraction", "pdf_extraction")
+        self.create_radio_button("Text Formatting - Regex", "text_formatting")
+        self.create_radio_button("Data Analysis", "data_analysis")
+
+        self.progress_bar = ProgressBar()
 
     def file_path_button(self):
         file_path_frame = ttk.Frame(self.button_frame, padding=10)
@@ -34,10 +42,14 @@ class Functionality:
         if not self.file_path:
             self.print_message("No path is given. Please provide a valid path!")
             return
-        
+
+        if not self.selected_process.get():
+            self.print_message("No process is selected. Please select a process!")
+            return
+
         files = os.listdir(self.file_path)
         txt_files = [file for file in files if file.endswith(".txt")]
-        
+
         if not files:
             self.print_message("There is no file in the path. Please provide a valid path!")
             return
@@ -47,12 +59,29 @@ class Functionality:
         elif len(txt_files) != len(files):
             self.print_message("There should be only txt files inside the chosen document. Please provide a valid path!")
             return
-        
+
         script_location = self.file_path
         self.print_message(f"Running scripts from {script_location}")
 
+        self.progress_animation.start()
+
+        if self.selected_process.get() == "pdf_extraction":
+            # Perform PDF extraction process
+            pass
+        elif self.selected_process.get() == "text_formatting":
+            # Perform text formatting process
+            pass
+        elif self.selected_process.get() == "data_analysis":
+            # Perform data analysis process
+            pass
+
+        self.progress_animation.stop()
+
     def create_button(self, text, command):
         ttk.Button(self.button_frame, text=text, command=command, style="Run.TButton").pack(side="left", padx=5, pady=5)
+
+    def create_radio_button(self, text, value):
+        ttk.Radiobutton(self.button_frame, text=text, variable=self.selected_process, value=value).pack(side="left", padx=5, pady=5)
 
     def print_message(self, message):
         self.message_box.configure(state="normal")
