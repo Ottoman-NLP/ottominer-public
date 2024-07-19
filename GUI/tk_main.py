@@ -1,8 +1,8 @@
-import tk_frame as tkframe
-import tk_function as tkfunc
-import meta as meta
+from GUI import tk_frame as tkframe
+from GUI import tk_function as tkfunc
+from GUI import meta as meta
 import tkinter as tk
-import tk_asset
+from GUI import tk_asset
 
 
 class App(tkframe.App, tkfunc.Functionality):
@@ -25,4 +25,3 @@ if __name__ == "__main__":
         app.run()
     except Exception as e:
         print(f"An error occurred: {str(e)}")
-

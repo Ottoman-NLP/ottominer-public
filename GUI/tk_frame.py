@@ -3,18 +3,15 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import os
 
-
 class App(tk.Frame):
     """
     This class is the main application frame. It contains the GUI elements for frame design.
     """
-    
     def __init__(self, master=None):
         super().__init__(master)
         self.pack(side="left", fill="both", expand=True)
         self.file_path = ""
-        
-        # Load and set the background image with transparency
+
         try:
             self.bg_image = Image.open('GUI/assets/logo_llm.png')
             self.bg_image = self.bg_image.copy()
@@ -25,9 +22,3 @@ class App(tk.Frame):
             self.bg_label.lower()
         except FileNotFoundError:
             print("Background image file not found.")
-
-
-"""
-curr_dir = os.getcwd()
-print(curr_dir)
-"""

@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
 import os
-from ..resources.animation import ProgressBar
+import time
+from resources.animation import ProgressBar  # Absolute import
 
 class Functionality:
     def __init__(self):
@@ -63,19 +64,29 @@ class Functionality:
         script_location = self.file_path
         self.print_message(f"Running scripts from {script_location}")
 
-        self.progress_animation.start()
+        total = len(txt_files)
+        task = "Running Selected Process"
+        next_target = "Next Step"
 
-        if self.selected_process.get() == "pdf_extraction":
-            # Perform PDF extraction process
-            pass
-        elif self.selected_process.get() == "text_formatting":
-            # Perform text formatting process
-            pass
-        elif self.selected_process.get() == "data_analysis":
-            # Perform data analysis process
-            pass
+        t = self.progress_bar.start(task, next_target, "detailed", script_location)  # Start the progress bar
 
-        self.progress_animation.stop()
+        for i in range(total):
+            time.sleep(0.1)  # Simulate work
+            progress = (i + 1) / total * 100
+            progress_details = {"gpu": i % 100, "cpu": (i + 10) % 100, "switches": i, "fs_in": i*2, "fs_out": i*3, "size": i*4, "hash": i*5, "eta": total - i}
+            self.progress_bar.update(task, progress, next_target, total, progress_details)  # Update the progress bar
+
+            if self.selected_process.get() == "pdf_extraction":
+                # Perform PDF extraction process
+                pass
+            elif self.selected_process.get() == "text_formatting":
+                # Perform text formatting process
+                pass
+            elif self.selected_process.get() == "data_analysis":
+                # Perform data analysis process
+                pass
+
+        self.progress_bar.stop(t)
 
     def create_button(self, text, command):
         ttk.Button(self.button_frame, text=text, command=command, style="Run.TButton").pack(side="left", padx=5, pady=5)
