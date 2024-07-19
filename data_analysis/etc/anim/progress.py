@@ -1,49 +1,35 @@
-import itertools
+
 import threading
 import time
 import sys
-import os # noqa: F401
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'utils')))
-from system_metrics import get_system_metrics
-
-class ProgressBar:
+import tkinter as tk
+from itercycle import AnimatedProgress
+class ProgressBar(AnimatedProgress):
     def __init__(self):
-        self.done = False
-        self.current_task = ""
-        self.next_target = ""
-        self.progress = 0
-        self.progress_details = {}
-        self.start_time = time.time()
-        self.directory = ""
+        super().__init__()
+        self.progress_type = "general"
+        self.window = None
+        self.label = None
+        self.progress_var = None
 
-    def animate_general(self):
-        for c in itertools.cycle(['|', '/', '-', '\\']):
-            if self.done:
-                break
-            sys.stdout.write(f'\r{self.current_task} {c} {self.progress}% - Next: {self.next_target}')
-            sys.stdout.flush()
-            time.sleep(0.1)
-        sys.stdout.write('\rDone!     \n')
+    def create_window(self):
+        self.window = tk.Tk()
+        self.window.title("Progress")
+        self.label = tk.Label(self.window, text=f"{self.current_task} - {self.next_target}")
+        self.label.pack()
+        self.progress_var = tk.DoubleVar()
+        progress_bar = tk.Progressbar(self.window, variable=self.progress_var, maximum=100)
+        progress_bar.pack(fill=tk.X, expand=True)
+        self.window.after(100, self.update_window)
+        threading.Thread(target=self.window.mainloop).start()
 
-    def animate_detailed(self):
-        for c in itertools.cycle(['.', 'o', 'O', '0']):
-            if self.done:
-                break
-            details = (
-                f"GPU: {self.progress_details.get('gpu', 0)}%, "
-                f"CPU: {self.progress_details.get('cpu', 0)}%, "
-                f"Sw: {self.progress_details.get('switches', 0)}, "
-                f"FS In: {self.progress_details.get('fs_in', 0)}, "
-                f"FS Out: {self.progress_details.get('fs_out', 0)}, "
-                f"Size: {self.progress_details.get('size', 0)} MB, "
-                f"Hash: {self.progress_details.get('hash', 0)} H/s, "
-                f"ETA: {self.progress_details.get('eta', 0)} s"
-            )
-            sys.stdout.write(f'\r{self.current_task} {c} {self.progress}% [{details}] - Next: {self.next_target}')
-            sys.stdout.flush()
-            time.sleep(0.1)
-        sys.stdout.write('\rDone!     \n')
+    def update_window(self):
+        if self.done:
+            self.window.quit()
+            return
+        self.label.config(text=f"{self.current_task} - {self.next_target}")
+        self.progress_var.set(self.progress)
+        self.window.after(100, self.update_window)
 
     def start(self, task, next_target, progress_type="general", directory=""):
         self.done = False
@@ -53,6 +39,7 @@ class ProgressBar:
         self.start_time = time.time()
         self.progress_type = progress_type
         self.directory = directory
+        self.create_window()
         if progress_type == "detailed":
             t = threading.Thread(target=self.animate_detailed)
         else:
@@ -65,13 +52,19 @@ class ProgressBar:
         self.progress = progress
         self.next_target = next_target
         if progress_details is None:
-            progress_details = get_system_metrics(progress, total, self.start_time, self.directory)
+            try:
+                from itercycle import get_system_metrics
+            except ImportError:
+                pass
+            else:
+                progress_details = get_system_metrics(progress, total, self.start_time, self.directory)
         self.progress_details = progress_details
 
 
     def stop(self, t):
         self.done = True
         t.join()
+        
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -85,7 +78,7 @@ if __name__ == "__main__":
         progress_type = "general"
         directory = "."
 
-    total = 100  # Example total, adjust as needed
+    total = 100
     pb = ProgressBar()
     t = pb.start(task, next_target, progress_type, directory)
     for i in range(total):
