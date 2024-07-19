@@ -2,7 +2,12 @@ import os
 import hashlib
 import logging
 import psutil
-from cupy.cuda import Device
+try:
+    from cupy.cuda import Device
+    GPU_ENABLED = True
+except ImportError:
+    GPU_ENABLED = False
+    logging.warning("Cupy is not installed or GPU is not available. GPU metrics will not be available.")
 
 class SysMetrics:
     def __init__(self):
@@ -26,7 +31,8 @@ class SysMetrics:
 
     def update_cpu_gpu_usage(self):
         try:
-            self.metrics['gpu_usage'] = Device(0).mem_info[0] / Device(0).mem_info[1] * 100
+            if GPU_ENABLED:
+                self.metrics['gpu_usage'] = Device(0).mem_info[0] / Device(0).mem_info[1] * 100
             self.metrics['cpu_usage'] = psutil.cpu_percent(interval=1)
         except Exception as e:
             logging.error("Failed to get CPU/GPU usage: %s", e)

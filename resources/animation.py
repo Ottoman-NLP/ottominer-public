@@ -1,8 +1,10 @@
+import os
+import sys
 import itertools
 import threading
 import time
-import sys
-import sys_metrics
+
+from resources.sys_metrics import SysMetrics
 
 
 class ProgressBar:
@@ -64,7 +66,7 @@ class ProgressBar:
         self.progress = progress
         self.next_target = next_target
         if progress_details is None:
-            progress_details = sys_metrics(progress, total, self.start_time, self.directory)
+            progress_details = SysMetrics(progress, total, self.start_time, self.directory)
         self.progress_details = progress_details
 
 
