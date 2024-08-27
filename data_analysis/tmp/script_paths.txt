@@ -1,2 +1,0 @@
-/Users/felixfelicis/Desktop/felix/mycodes/ottoman_llm/opt/standard/wcloud.py
-/Users/felixfelicis/Desktop/felix/mycodes/ottoman_llm/opt/standard/wgold.py
