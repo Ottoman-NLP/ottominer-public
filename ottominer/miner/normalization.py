@@ -1,5 +1,5 @@
 """
-This module contains normalization characters for Ottoman Turkish text processing 
+This module contains normalization functions for Ottoman Turkish text processing 
 for letters and unknown characters.
 """
 
@@ -8,9 +8,7 @@ char_setup = {
     'ā': 'a', 'Ā': 'A',
     "ê": "e",
     "ē": "e", "Ē": "E",
-
     "å": "a", "Å": "A",
-    
     'î': 'i', 'Î': 'I',
     "ī": "i", "Ī": "I", 
     'û': 'u', 'Û': 'U',
@@ -24,39 +22,42 @@ unknown_char_setup = {
      "œ": "i",
      "†": "u",
      "¢": "i",
-      "“": '"', "”": '"', "’": "'", "–": "-", "—": "-", "…": "...", "": "",
+     "“": '"', "”": '"', "’": "'", "–": "-", "—": "-", "…": "...", "": "",
 }
 
 class Normalization:
     """
-    :param text: The text to be normalized.
-    :type text: str
+    Class for normalizing characters in Ottoman Turkish text.
+
     :return: The normalized text.
     :rtype: str
     """
-
     def __init__(self):
         self.char_setup = char_setup
         self.unknown_char_setup = unknown_char_setup
 
-    def normalize_char(self, text):
+    def normalize_char(self, text: str) -> str:
         """
-        only normalizes characters
-        """
-        for char, replacement in self.char_setup.items():
-            text = ''.join(char_setup.get(char, char) for char in text)
-            return text
-    
-    def normalize_unknown_char(self, text):
-        """
-        normalizes and returns analytical information about the text on unknown characters
-        """
-        for char, replacement in self.unknown_char_setup.items():
-            text = ''.join(unknown_char_setup.get(char, char) for char in text)
-            return text
+        Normalizes regular characters in the text.
 
-
-"""    def normalize_characters(self, text):
+        :param text: The text to be normalized.
+        :type text: str
+        :return: The text with normalized characters.
+        :rtype: str
+        """
         for char, replacement in self.char_setup.items():
             text = text.replace(char, replacement)
-        return text"""
+        return text
+    
+    def normalize_unknown_char(self, text: str) -> str:
+        """
+        Normalizes unknown characters in the text and returns the processed text.
+
+        :param text: The text to be normalized.
+        :type text: str
+        :return: The text with unknown characters normalized.
+        :rtype: str
+        """
+        for char, replacement in self.unknown_char_setup.items():
+            text = text.replace(char, replacement)
+        return text
