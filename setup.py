@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='ottominer',
-    version='0.1.3',
+    version='0.1.4',
     description='An NLP mining and extraction package for Ottoman documents',
     author='rekurrenzk',
     author_email='rekurrenzk@proton.me',
