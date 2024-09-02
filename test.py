@@ -9,7 +9,7 @@ import numpy as np
 
 # Define the input and output directories
 rd = Path(__file__).resolve().parent
-input_dir = rd / 'saved' / 'pdfs'
+input_dir = rd / 'saved' / 'pdf'
 save_dir = rd / 'saved' / 'test_save'
 os.makedirs(save_dir, exist_ok=True)
 
@@ -84,7 +84,7 @@ def extract_text_with_layoutparser(pdf_path: Path) -> str:
         
         # Filter out elements that are not the main text (ignoring headers, footers, and side notes)
         text_blocks = lp.Layout([b for b in layout if b.type == 'Text' and 
-                                 0.15 < b.block.y_1 / page.rect.height < 0.85])  # Keep blocks in the main body region
+                                 0.10 < b.block.y_1 / page.rect.height < 0.90])  # Keep blocks in the main body region
 
         # Extract and concatenate text from text blocks
         for block in text_blocks:
