@@ -1,10 +1,8 @@
 from is_regex import IsRemovedIf, IsNewLineIf
 from pathlib import Path
-from meta_logger import MetaLogger
 from normalization import Normalization
 import re
 
-# Set up the save directory for logging
 rd = Path(__file__).resolve().parents[2]
 save_dir = rd / 'saved'
 save_dir.mkdir(parents=True, exist_ok=True)
@@ -17,7 +15,7 @@ class AppliedRegex:
         :param text: The text to be manipulated with regex patterns.
         """
         self.text = text
-        self.normalizer = Normalization()  # Initialize Normalization class
+        self.normalizer = Normalization()
 
     def apply_format_or_remove(self) -> str:
         """
@@ -25,29 +23,28 @@ class AppliedRegex:
         
         :return: The formatted or removed text based on checks.
         """
-        # Normalize text
+        
         self.text = self.normalizer.normalize_char(self.text)
         self.text = self.normalizer.normalize_unknown_char(self.text)
 
-        # Apply formatting and removal checks
         remove_checker = IsRemovedIf(self.text)
         format_checker = IsNewLineIf(self.text)
 
         if self._apply_remove(remove_checker):
-            MetaLogger.logformative(self.text, str(save_dir))
+
             print(f"Text removed due to matching remove conditions.")
-            return ''  # Text is removed based on the condition
+            return ''.join(self.text.split())
         
         if self._apply_format(format_checker):
-            MetaLogger.logformative(self.text, str(save_dir))
+
             formatted_text = '\n' + self.text.strip() + '\n'
             formatted_text = self.remove_empty_lines(formatted_text)
             formatted_text = self.handle_special_line_cases(formatted_text)
             print(f"Formatted text: {formatted_text[:30]}...")
-            return formatted_text  # Newline formatted text
+            return formatted_text
         
         print(f"No change in text: {self.text[:30]}...")
-        return self.text  # No changes if neither condition is met
+        return self.text
 
     def _apply_remove(self, checker: IsRemovedIf) -> bool:
         """
@@ -123,24 +120,23 @@ class AppliedRegex:
                     next_line = lines[j].strip()
                     if next_line.isupper() or re.match(r'^[A-ZİĞÜŞÖÇ]+(?:-[a-z]+)?$', next_line):
                         title_lines.append(next_line)
-                        lines[j] = ''  # Remove the next line since it's joined
+                        lines[j] = ''
                     else:
                         break
                 title = ' '.join(title_lines)
                 cleaned_lines.append(f"Başlık: {title}")
                 continue
 
-            # Handle hyphenated lines
             if line.endswith('-') and i + 1 < len(lines):
                 next_line = lines[i + 1].strip()
                 if re.match(r'^[a-zA-Z]', next_line):
                     line = line[:-1] + next_line
-                    lines[i + 1] = ''  # Remove the next line since it's joined
+                    lines[i + 1] = '' 
 
-            # Join words with spaces before '’'
             line = re.sub(r'\s+’\s*', '’', line)
 
             cleaned_lines.append(line)
+  
 
         return '\n'.join(cleaned_lines)
 

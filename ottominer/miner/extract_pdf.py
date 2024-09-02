@@ -1,6 +1,6 @@
-import fitz  # PyMuPDF
-from typing import Tuple, Optional, List
-from normalization import Normalization  # Import the updated Normalization class
+import fitz
+from typing import Tuple, Optional
+from normalization import Normalization
 
 class MostCommonFontExtraction:
     def __init__(self, pdf_document: fitz.Document):
@@ -11,7 +11,7 @@ class MostCommonFontExtraction:
         """
         self.pdf_document = pdf_document
         self.main_font_size, self.next_size = self._analyze_fonts()
-        self.normalizer = Normalization()  # Instantiate Normalization
+        self.normalizer = Normalization()
 
     def _analyze_fonts(self) -> Tuple[Optional[float], Optional[float]]:
         """
@@ -53,73 +53,13 @@ class MostCommonFontExtraction:
         """
         with fitz.open(pdf_path) as pdf:
             extracted_text = ""
-            arabic_buffer = []
-            processing_arabic = False
-
             for page in pdf:
                 blocks = page.get_text("dict")["blocks"]
-                for block in blocks:
-                    if "lines" in block.keys():
-                        for line in block['lines']:
-                            line_text = self._process_line(line['spans'], arabic_buffer, processing_arabic)
-                            extracted_text += line_text + "\n"
+            print(blocks)
 
-            if arabic_buffer:
-                extracted_text += "\n" + " ".join(arabic_buffer[::-1]) + "\n"
 
         return extracted_text
-
-    def _process_line(self, spans: List[dict], arabic_buffer: List[str], processing_arabic: bool) -> str:
-        """
-        Process a line of text spans and extract relevant text.
-
-        :param spans: List of spans to process.
-        :param arabic_buffer: Buffer to store Arabic text.
-        :param processing_arabic: Flag indicating if Arabic text processing is active.
-        :return: Processed line text.
-        """
-        line_text = []
-        for span in spans:
-            text = span['text'].strip()
-            font_size = span['size']
-            is_bold = 'Bold' in span['font'] or 'Black' in span['font']
-            contains_alpha = any(c.isalpha() for c in text)
-            is_numeric_only_bold = is_bold and text.isnumeric()
-
-            if self.is_turkish(text):
-                processing_arabic = True
-                text = text.strip("()")
-                normalized_text = self.normalize_chars(text)
-                arabic_buffer.append(normalized_text)
-            elif processing_arabic:
-                if arabic_buffer:
-                    arabic_text = " ".join(arabic_buffer)
-                    line_text.append("\n" + arabic_text[::-1] + "\n")
-                    arabic_buffer.clear()
-                processing_arabic = False
-                line_text.append(text)
-            elif (font_size in [self.main_font_size, self.next_size] and contains_alpha and not is_numeric_only_bold):
-                line_text.append(text)
-
-        return " ".join(line_text)
-
-    def is_turkish(self, text: str) -> bool:
-        """
-        Check if the text is Turkish.
-        (Placeholder function - implement your logic)
-        """
-        # Implement your Turkish text detection logic
-        return False
-
-    def normalize_chars(self, text: str) -> str:
-        """
-        Normalize characters in the text using the Normalization class.
-        
-        :param text: The text to normalize.
-        :type text: str
-        :return: The normalized text.
-        :rtype: str
-        """
-        text = self.normalizer.normalize_char(text)
-        text = self.normalizer.normalize_unknown_char(text)
-        return text
+    
+if __name__ == "__main__":
+    ext_text = MostCommonFontExtraction.extract_text("../saved/pdfs/evliya_celebi.pdf")
+    print(ext_text)

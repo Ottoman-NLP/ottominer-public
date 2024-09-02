@@ -3,14 +3,17 @@ import sys
 from pathlib import Path
 import fitz
 import re
+from .anim.progress import ProgressBar
 
 rd = Path(__file__).resolve().parents[2]
 sys.path.append(str(rd))
-from ..ottominer.anim.progress import ProgressBar
 
 
-input_dir = rd / "LLM" / "texture" / "data_pdfs"
-output_dir = rd / "LLM" / "texture" / "texts"
+
+input_dir = rd / "saved" / "pdfs"
+output_dir = rd / "saved" / "texture"
+import os 
+os.makedirs(output_dir, exist_ok=True)
 
 print(f"Root directory: {rd}")
 print(f"Input directory: {input_dir}")
