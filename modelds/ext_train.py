@@ -5,10 +5,10 @@ import sys
 import re
 
 rd = Path(__file__).resolve().parents[2]
-data_dir = rd / 'corpus-texts' # all textual data directory
-pdfs_dir = data_dir / 'pdfs' # pdfs directory
-txts_extracted_dir = data_dir / 'extracted_texts' # txt files extracted from pdfs -- will be used for training as noisy data
-txts_clean_dir = data_dir / 'clean_corpus_text' # cleaned corpus texts
+data_dir = rd / 'corpus-texts'
+pdfs_dir = data_dir / 'pdfs'
+txts_extracted_dir = data_dir / 'extracted_texts'
+txts_clean_dir = data_dir / 'clean_corpus_text'
 os.makedirs(txts_extracted_dir, exist_ok=True)
 os.makedirs(txts_clean_dir, exist_ok=True)
 sys.path.append(str(rd))
