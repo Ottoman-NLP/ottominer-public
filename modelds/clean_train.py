@@ -4,9 +4,9 @@ import sys
 import re
 
 rd = Path(__file__).resolve().parents[2]
-data_dir = rd / 'corpus-texts' # all textual data directory
+data_dir = rd / 'corpus-texts'
 txts_extracted_dir = data_dir / 'extracted_texts' # txt files extracted from pdfs -- will be used for training as noisy data
-txts_clean_dir = data_dir / 'extracted_texts' # cleaned corpus texts
+txts_clean_dir = data_dir / 'extracted_texts'
 os.makedirs(txts_extracted_dir, exist_ok=True)
 sys.path.append(str(rd))
 
@@ -31,35 +31,27 @@ def clean_text(text):
     # Remove single characters/letters occurrences
     text = re.sub(r'\s+(\S)\s+', ' ', text)
     
-    # Split sentences and place each on a new line, excluding numbered indices
     sentences = re.split(r'(?<=[.?!:])\s+(?!\d+\.)', text)
-    sentences = [sentence.strip() for sentence in sentences if sentence]  # Clean up extra whitespace
-    return '\n'.join(sentences)  # Join sentences with new lines
+    sentences = [sentence.strip() for sentence in sentences if sentence]
+    return '\n'.join(sentences) 
 
 def normalize_quotation(text):
-    # Replace incorrect quotation marks with the correct format
     text = re.sub(r"(\b\w+)\s'(\w+)", r"\1'\2", text)
     return text
 
 if __name__ == '__main__':
-    # List all text files in the input directory
     text_files = [file for file in os.listdir(input_dir) if file.endswith('.txt')]
     
-    # Process each text file
     for file_name in text_files:
         input_path = input_dir / file_name
         
-        # Read the content of the file
         with open(input_path, 'r', encoding='utf-8') as file:
             content = file.read()
         
-        # Clean the text using the clean_text function
         cleaned_content = clean_text(content)
         
-        # Remove any extra gaps between lines
         cleaned_content = re.sub(r'\n\s*\n', '\n', cleaned_content)
         
-        # Define the output path and save the cleaned content
         output_path = output_dir / file_name
         with open(output_path, 'w', encoding='utf-8') as file:
             file.write(cleaned_content)
