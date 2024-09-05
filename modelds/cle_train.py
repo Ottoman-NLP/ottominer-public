@@ -60,7 +60,6 @@ def clean_text(text):
         line = re.sub(r'\s*[=§]\s*', '', line)
         line = re.sub(r'\s*----+\s*', '', line)
 
-        # Handle "Aded: NUMBER" case
         if re.search(r'\bAded:\s*$', line):
             if i + 1 < len(lines) and re.match(r'^\d+$', lines[i + 1].strip()):
                 line = line.strip() + lines[i + 1].strip()
@@ -75,13 +74,12 @@ def clean_text(text):
         if re.match(r'^\d+$', line):
             continue
         if re.match(r'^[A-ZİĞÜŞÖÇ]+\s*$', line) or re.match(r'^[A-ZİĞÜŞÖÇ\-]+$', line) or re.match(r'^[A-ZİĞÜŞÖÇ]+(?:-[a-z]+)?$', line):
-            # This line is a potential title
             title_lines = [line]
             for j in range(i + 1, len(lines)):
                 next_line = lines[j].strip()
                 if next_line.isupper() or re.match(r'^[A-ZİĞÜŞÖÇ]+(?:-[a-z]+)?$', next_line):
                     title_lines.append(next_line)
-                    lines[j] = ''  # Remove the next line since it's joined
+                    lines[j] = ''
                 else:
                     break
             title = ' '.join(title_lines)
