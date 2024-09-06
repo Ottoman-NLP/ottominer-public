@@ -4,7 +4,6 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration, DataCollatorFo
 from datasets import Dataset
 from pathlib import Path
 
-# Define base directory and paths
 base_dir = Path(__file__).resolve().parents[2]
 input_path = base_dir / 'corpus-texts' / 'tokenizer_bpe' / 'bpe_tokenizer.json'
 csv_path = base_dir / 'corpus-texts' / 'automated.csv.results' / 'all_aligned_sentences.csv'
@@ -35,7 +34,7 @@ dataset = dataset.train_test_split(test_size=0.2)
 train_dataset = dataset['train']
 test_dataset = dataset['test']
 
-def tokenize_function(examples):
+def tokenize_function(examples) -> dict[str, list]:
     inputs = bpe_tokenizer.encode_batch(examples['input_text'])
     targets = bpe_tokenizer.encode_batch(examples['target_text'])
 
