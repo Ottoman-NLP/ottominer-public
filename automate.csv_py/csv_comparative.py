@@ -30,11 +30,11 @@ def read_file(file_path):
 
 def normalize_text(text):
     """Normalizes text by replacing common character variations and trimming spaces."""
-    text = text.lower()  # Convert to lowercase
+    text = text.lower()
     text = re.sub(r'[\u2018\u2019\u201C\u201D]', '"', text)  # Replace curly quotes with standard quotes
     text = re.sub(r'[\u2013\u2014]', '-', text)  # Replace dashes
-    text = re.sub(r'[^\w\s.,!?;:]', '', text)  # Remove other special characters except punctuation
-    text = text.replace("â", "a").replace("î", "i").replace("û", "u")  # Normalize accented characters
+    text = re.sub(r'[^\w\s.,!?;:]', '', text)
+    text = text.replace("â", "a").replace("î", "i").replace("û", "u")
     return text.strip()
 
 def split_into_sentences(text):
