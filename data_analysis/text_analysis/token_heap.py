@@ -43,7 +43,7 @@ num_sentences = len(sentences)
 print(f"Number of tokens: {num_tokens}")
 print(f"Number of sentences: {num_sentences}")
 
-# Count the frequency of each token
+
 token_counts = Counter(tokens)
 num_unique_tokens = len(token_counts)
 print(f"Number of unique tokens: {num_unique_tokens}")
@@ -67,13 +67,35 @@ print(f"Heap's Law plot saved to {plot_file}")
 token_diversity = num_unique_tokens / num_tokens
 print(f"Token diversity: {token_diversity:.4f}")
 
+# Add this after the Heap's Law plot
+plt.figure(figsize=(12, 6))
+most_common = token_counts.most_common(20)
+tokens, counts = zip(*most_common)
+plt.bar(tokens, counts)
+plt.xticks(rotation=45, ha='right')
+plt.xlabel('Tokens')
+plt.ylabel('Frequency')
+plt.title('Top 20 Most Frequent Tokens')
+plt.tight_layout()
+
+freq_plot_file = bd_ / "corpus-texts" / "token_frequency_plot.png"
+plt.savefig(freq_plot_file)
+print(f"Token frequency plot saved to {freq_plot_file}")
+
 try:
     with open(output_file, 'w', encoding='utf-8') as file:
         file.write(f"Number of tokens: {num_tokens}\n")
         file.write(f"Number of sentences: {num_sentences}\n")
         file.write(f"Number of unique tokens: {num_unique_tokens}\n")
         file.write(f"Predicted unique tokens (Heap's Law): {predicted_vocabulary_size:.2f}\n")
-        file.write(f"Token diversity: {token_diversity:.4f}\n")
+        file.write(f"Token diversity: {token_diversity:.4f}\n\n")
+        
+        file.write("Top 20 Most Frequent Tokens:\n")
+        for token, count in most_common:
+            file.write(f"{token}: {count}\n")
+        
+        file.write(f"\nHeap's Law plot saved to {plot_file}\n")
+        file.write(f"Token frequency plot saved to {freq_plot_file}\n")
     print(f"Analysis results written to {output_file}")
 except IOError:
     print(f"Error: Unable to write to output file at {output_file}")
