@@ -12,15 +12,14 @@ output_dir = base_dir / 'corpus-texts' / 'tokenizer_bpe'
 output_dir.mkdir(parents=True, exist_ok=True)
 
 try:
-    df = pd.read_csv(input_path, on_bad_lines='skip')  # Skip problematic lines
+    df = pd.read_csv(input_path, on_bad_lines='skip')
     print(f"CSV loaded successfully with {len(df)} rows.")
 except pd.errors.ParserError as e:
     print(f"Error parsing CSV: {e}")
     exit(1)
 
-# Choose the column(s) for training the tokenizer
-# Combine 'noisy' and 'clean' text if desired
-texts = df['noisy'].tolist() + df['clean'].tolist()  # Use both columns
+
+texts = df['noisy'].tolist() + df['clean'].tolist()
 
 tokenizer = Tokenizer(models.BPE())
 
