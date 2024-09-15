@@ -5,7 +5,7 @@
 # Ottoman NLP Toolkit
 
 <p align="center">
-  <img src="items/Ottominer_icon.png" alt="Ottominer Welcome Poster" width="400"/>
+  <img src="items/ottominer_icon.png" alt="Ottominer Welcome Poster" width="400"/>
 </p>
 
 ## Overview
