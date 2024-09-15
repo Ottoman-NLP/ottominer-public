@@ -1,6 +1,6 @@
 <p align="center">
   <img src="items/readme_logo.png" alt="Ottoman NLP Toolkit Logo" width="200" style="margin-right: 20px;"/>
-  <img src="items/Boğaziçi_Üniversitesi_Logo.png" alt="Boğaziçi University Logo" width="200"/>
+  <img src="items/boun.png" alt="Boğaziçi University Logo" width="200"/>
 </p>
 <p align="center">
   <em>Ottoman NLP</em>
