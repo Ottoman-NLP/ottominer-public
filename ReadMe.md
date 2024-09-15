@@ -1,12 +1,13 @@
 <p align="center">
-  <img src="items/readme_logo.png" alt="Ottoman NLP Toolkit Logo" width="200"/>
+  <img src="items/readme_logo.png" alt="Ottoman NLP Toolkit Logo" width="200" style="margin-right: 20px;"/>
+  <img src="items/Boğaziçi_Üniversitesi_Logo.png" alt="Boğaziçi University Logo" width="200"/>
 </p>
-
-# Ottoman NLP Toolkit
-
 <p align="center">
-  <img src="items/ottominer_icon.png" alt="Ottominer Welcome Poster" width="400"/>
+  <em>Ottoman NLP</em>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <em>Boğaziçi BUCOLIN Lab</em>
 </p>
+
 
 ## Overview
 
