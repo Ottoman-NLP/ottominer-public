@@ -1,55 +1,70 @@
+<p align="center">
+  <img src="items/readme_logo.png" alt="Ottoman NLP Toolkit Logo" width="200"/>
+</p>
+
 # Ottoman NLP Toolkit
 
-![Ottoman NLP Toolkit Logo](items/readme_logo.png)
+<p align="center">
+  <img src="items/Ottominer_icon.png" alt="Ottominer Welcome Poster" width="400"/>
+</p>
 
 ## Overview
-The Ottoman NLP Toolkit is an advanced file system management tool designed to streamline and accelerate usability and file management for clean corpus creation and analysis. The toolkit includes features for version tracking, authorization, and real-time progress updates and data analysis for various use cases.
 
+The Ottoman NLP Toolkit is a sophisticated file system management solution designed to enhance corpus creation and analysis for Ottoman language processing. This toolkit offers advanced features including version control, authorization management, and real-time progress tracking for various NLP tasks.
 
 ![Workflow Diagram](items/workflow.png)
 
-## Features
-- **File System Management Scripts**:
-  - Version tracking and authorization management.
-  - Enhanced usability and control over file versions.
+## Key Features
 
-- **Key Functionalities** (main --> Integration with GUI will be added in version 1.1.1):
-  - **PDF Extraction**: Extract text and data from PDF files.
-  - **Text Manipulation**: Perform advanced text formatting and manipulation using regular expressions.
-  - **Data Analysis**: Analyze and process data for various use cases.
+- **Robust File System Management**
+  - Comprehensive version tracking
+  - Secure authorization protocols
+  - Intuitive file version control
 
-- **OCR Module** (main --> Still in development):
-  - **PDF Extraction**: Extract text and data from PDF files.
-  - **Text Manipulation**: Perform advanced text formatting and manipulation using regular expressions.
-  - **Data Analysis**: Analyze and process data for various use cases.
+- **Core Functionalities**
+  - Efficient PDF text extraction
+  - Advanced regex-based text manipulation
+  - Versatile data analysis capabilities
 
+- **T5 Formatter (New in v1.0.0)**
+  - Automated Ottoman text formatting using T5 model
+  - Supervised learning for text modification
 
-- **Graphical User Interface (GUI)**:
-  - Beta version with integrated progress bar functionality.
-  - Real-time feedback during file operations.
-  - Detailed system status updates.
-
+- **User-Friendly Graphical Interface**
+  - Intuitive progress tracking
+  - Real-time operation feedback
+  - Detailed system status reporting
 
 ## Installation
 
-1. **Clone the Repository**:
+1. Clone the repository:
    ```bash
    git clone https://github.com/Ottoman-NLP/Ottoman_LLM_Repos.git
    cd Ottoman_NLP_Toolkit
+   ```
 
-2. **Install Dependencies**:
-   - **Python 3.6 or higher**
-   - **pip install -r requirements.txt**
+2. Set up the environment:
+   - Ensure Python 3.6+ is installed
+   - Install dependencies: `pip install -r requirements.txt`
 
-3. **Usage**:
+## Usage
 
-   - **python -m GUI.tk_main**: To start the GUI application and be able to use the toolkit.
-   
+Launch the GUI application:
 
-4. **App**:
-   - **Browse Files**: Select a directory to apply process.
-   - **Run Script**: Execute the selected process.
-   - **Quit**: Exit the program.
+bash
+python -m GUI.tk_main
 
 
-If you encounter any issues or have suggestions for improvements, please create an issue on GitHub or reach out to us via email.
+### Application Features
+- **File Browser**: Select target directories for processing
+- **Script Execution**: Initiate selected NLP operations
+- **Program Termination**: Safely exit the application
+
+## Support and Feedback
+
+For issues, feature requests, or general feedback, please [open an issue](https://github.com/Ottoman-NLP/Ottoman_LLM_Repos/issues) on our GitHub repository or contact our support team via email.
+
+
+---
+
+© 2023 Ottoman NLP Project. All rights reserved.
