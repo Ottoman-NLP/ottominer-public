@@ -99,7 +99,7 @@ If you use the Ottoman NLP Toolkit in your research, please cite our paper:
 bibtex
 @inproceedings{karagoz2024towards,
 title={Towards a Clean Text Corpus for Ottoman Turkish},
-author={Karag{\"o}z, Fatih Burak and Do{\u{g}}an, Berat and {\"O}zate{\c{s}}, {\c{S}}aziye Bet{\"u}l},
+author={Karag{"o}z, Fatih Burak and Do{\u{g}}an, Berat and {"O}zate{\c{s}}, {\c{S}}aziye Bet{"u}l},
 booktitle={Proceedings of the First Workshop on Natural Language Processing for Turkic Languages (SIGTURK 2024)},
 pages={62},
 year={2024},
@@ -107,6 +107,7 @@ month={August},
 address={[Bangkok, Thailand]},
 publisher={[ACL]}
 }
+
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
