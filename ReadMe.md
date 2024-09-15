@@ -96,7 +96,7 @@ We welcome contributions from researchers and developers. Please consult our [Co
 ## Citing This Work
 
 If you use the Ottoman NLP Toolkit in your research, please cite our paper:
-bibtex
+<pre>
 @inproceedings{karagoz2024towards,
 title={Towards a Clean Text Corpus for Ottoman Turkish},
 author={Karag{"o}z, Fatih Burak and Do{\u{g}}an, Berat and {"O}zate{\c{s}}, {\c{S}}aziye Bet{"u}l},
@@ -107,6 +107,7 @@ month={August},
 address={[Bangkok, Thailand]},
 publisher={[ACL]}
 }
+</pre>
 
 ## License
 
