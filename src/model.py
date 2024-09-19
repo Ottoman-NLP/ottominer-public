@@ -78,9 +78,10 @@ def init_weights(m):
 def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
-def create_model(input_size, output_size, device, hidden_size=256, embedding_size=256, num_layers=2, dropout=0.5):
-    encoder = Encoder(input_size, embedding_size, hidden_size, num_layers, dropout)
-    decoder = Decoder(output_size, embedding_size, hidden_size, num_layers, dropout, device)  # Pass device
-    model = Seq2Seq(encoder, decoder, device).to(device)
+
+def create_model(input_size, output_size, device, hidden_size=256, num_layers=2, dropout=0.5):
+    encoder = Encoder(input_size, hidden_size, hidden_size, num_layers, dropout)
+    decoder = Decoder(output_size, hidden_size, hidden_size, num_layers, dropout, device)
+    model = Seq2Seq(encoder, decoder, device)
     model.apply(init_weights)
     return model
