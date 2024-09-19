@@ -17,13 +17,13 @@
 ## Project Overview
 
 The Ottoman NLP Toolkit is a state-of-the-art computational linguistics project aimed at revolutionizing the processing and analysis of Ottoman Turkish texts. Developed by the BUCOLIN Lab at Boğaziçi University, this toolkit addresses the unique challenges posed by the Ottoman language's complex script and historical variations.
-
+```
          ┌─────────┐                  ┌─────────┐
-Input -> │ Encoder │ -> Context -> │ Decoder │ -> Output
+Input -> │ Encoder │ -> Context ->    │ Decoder │ -> Output
          └─────────┘                  └─────────┘
              ↑                            ↑
         Embedding                    Embedding
-
+```
 ## Research Objectives
 
 This project aims to develop a state-of-the-art model for normalizing Ottoman Turkish texts. Using advanced Natural Language Processing (NLP) techniques, we transform non-standardized or noisy Ottoman Turkish text into a normalized form, facilitating further analysis and preservation of historical documents.
