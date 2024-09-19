@@ -11,8 +11,6 @@ def load_data(file_path: str) -> List[Tuple[str, str]]:
     return [(item['noisy'], item['clean']) for item in data]
 
 def character_tokenize(text: str) -> List[str]:
-    # Add normalization rules here
-    text = text.replace('â', 'a').replace('î', 'i').replace('û', 'u')
     return [char for char in text if char.strip()]
 
 def analyze_data(data: List[Tuple[str, str]]):
