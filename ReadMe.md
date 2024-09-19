@@ -18,15 +18,15 @@
 
 The Ottoman NLP Toolkit is a state-of-the-art computational linguistics project aimed at revolutionizing the processing and analysis of Ottoman Turkish texts. Developed by the BUCOLIN Lab at Boğaziçi University, this toolkit addresses the unique challenges posed by the Ottoman language's complex script and historical variations.
 
-![Workflow Diagram](items/workflow.png)
+         ┌─────────┐                  ┌─────────┐
+Input -> │ Encoder │ -> Context -> │ Decoder │ -> Output
+         └─────────┘                  └─────────┘
+             ↑                            ↑
+        Embedding                    Embedding
 
 ## Research Objectives
 
-1. Develop advanced NLP techniques tailored for Ottoman Turkish
-2. Create a comprehensive digital corpus of Ottoman texts
-3. Facilitate linguistic and historical research through automated text analysis
-4. Bridge the gap between classical Ottoman studies and modern computational methods
-
+This project aims to develop a state-of-the-art model for normalizing Ottoman Turkish texts. Using advanced Natural Language Processing (NLP) techniques, we transform non-standardized or noisy Ottoman Turkish text into a normalized form, facilitating further analysis and preservation of historical documents.
 ## Key Features and Methodologies
 
 ### 1. Corpus Management System
@@ -44,9 +44,9 @@ The Ottoman NLP Toolkit is a state-of-the-art computational linguistics project 
 - **Named Entity Recognition**: Identification of historical figures, places, and events
 - **Semantic Analysis**: Vector space modeling of Ottoman lexical semantics
 
-### 4. T5 Formatter (New in v1.0.0)
-- **Automated Text Structuring**: T5 model fine-tuned on Ottoman corpus
-- **Supervised Learning**: Iterative improvement through expert feedback
+### 4. Seq2Seq - Decoder Encoder Model
+- **Model Architecture**: Our model employs a Sequence-to-Sequence (Seq2Seq) architecture with an Encoder-Decoder framework, powered by Long Short-Term Memory (LSTM) layers.
+- **Embedding Layer**:  Converts tokens to dense vectors
 
 ### 5. Researcher Interface
 - **Interactive Visualization**: Dynamic representation of linguistic patterns
