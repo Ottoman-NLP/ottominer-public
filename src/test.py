@@ -22,11 +22,13 @@ def correct_sentence(model, sentence, vocab, device):
             output = model(source, source)
             predicted = output.argmax(2).squeeze(0)
             corrected = [vocab.itos[token.item()] for token in predicted]
-            return ' '.join(corrected)
+            corrected_sentence = ' '.join(corrected)
+            print(f"Original: {sentence}")
+            print(f"Corrected: {corrected_sentence}")
+            return corrected_sentence
         except RuntimeError as e:
             print(f"Error processing sentence: {e}")
-            return sentence  # Return the original sentence if there's an error
-
+            return sentence
 
 def correct_file(model, input_file, output_file, vocab, device):
     corrected_lines = []
@@ -50,11 +52,9 @@ def calculate_bleu(reference_file, candidate_lines):
     return corpus_bleu([[ref] for ref in references], candidates)
 
 def exploratory_data_analysis(original_file, corrected_lines):
-    # Read original file
     with open(original_file, 'r', encoding='utf-8') as f:
         original_lines = [line.strip() for line in f]
-
-    # Calculate statistics
+        
     original_lengths = [len(line.split()) for line in original_lines]
     corrected_lengths = [len(line.split()) for line in corrected_lines]
 
@@ -87,24 +87,16 @@ def exploratory_data_analysis(original_file, corrected_lines):
         'corrected_vocab_size': len(corrected_vocab)
     }
 def main():
-    # Load data and prepare vocabulary
+
     raw_data = load_data(goldset_dir)
     vocab, _ = prepare_data(raw_data, freq_threshold=2)
-
-    # Set device
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-    # Create model
     input_size = len(vocab.itos)
     output_size = len(vocab.itos)
     model = create_model(input_size, output_size, device)
-
-    # Load trained model weights
     model_path = os.path.join(os.path.dirname(__file__), 'best_model.pth')
     model.load_state_dict(torch.load(model_path))
     model.to(device)
-    
-    # Process file
     input_file = os.path.join('corpus-texts', 'MT_testset', 'original.txt')
     output_file = os.path.join('corpus-texts', 'MT_testset', 'corrected.txt')
     corrected_lines = correct_file(model, input_file, output_file, vocab, device)
@@ -115,8 +107,6 @@ def main():
     # reference_file = os.path.join('corpus-texts', 'MT_testset', 'reference.txt')
     # bleu_score = calculate_bleu(reference_file, corrected_lines)
     # print(f"BLEU Score: {bleu_score}")
-
-    # Perform exploratory data analysis
     eda_results = exploratory_data_analysis(input_file, corrected_lines)
     print("Exploratory Data Analysis Results:")
     print(f"Average Original Sentence Length: {eda_results['avg_original_length']:.2f}")
