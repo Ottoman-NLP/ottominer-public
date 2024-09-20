@@ -24,7 +24,7 @@ class Decoder(nn.Module):
         self.output_size = output_size
         self.hidden_size = hidden_size
         self.num_layers = num_layers
-        self.device = device  # Store the device attribute
+        self.device = device
         
         self.embedding = nn.Embedding(output_size, embedding_size)
         self.rnn = nn.LSTM(embedding_size, hidden_size, num_layers, dropout=dropout, batch_first=True)
@@ -79,7 +79,7 @@ def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
 
-def create_model(input_size, output_size, device, hidden_size=256, num_layers=2, dropout=0.5):
+def create_model(input_size, output_size, device, hidden_size=128, num_layers=2, dropout=0.3):
     encoder = Encoder(input_size, hidden_size, hidden_size, num_layers, dropout)
     decoder = Decoder(output_size, hidden_size, hidden_size, num_layers, dropout, device)
     model = Seq2Seq(encoder, decoder, device)

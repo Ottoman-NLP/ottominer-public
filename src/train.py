@@ -76,17 +76,17 @@ if __name__ == "__main__":
     aligned_data = load_data(Path(__file__).parent.parent.parent / 'corpus-texts' / 'datasets' / 'aligned_sentences.json')
     raw_data = goldset_data + aligned_data
     vocab, processed_data = prepare_data(raw_data, freq_threshold=2)
-
+    subset_size = min(len(processed_data), 10000)
+    processed_data = processed_data[:subset_size]
     # Split data into train and validation sets
     train_size = int(0.9 * len(processed_data))
     train_data = processed_data[:train_size]
     val_data = processed_data[train_size:]
-
-    num_epochs = 100  # Increased from 50
-    clip = 1.0  # Increased from 0.1
-    batch_size = 128  # Increased from 64
+    num_epochs = 20
+    clip = 0.1
+    batch_size = 64
     best_loss = float('inf')
-    patience = 10  # Increased from 5
+    patience = 5
     no_improve = 0
 
     train_dataset = TextDataset(train_data)
@@ -98,11 +98,11 @@ if __name__ == "__main__":
 
     input_size = len(vocab.itos)
     output_size = len(vocab.itos)
-    model = create_model(input_size, output_size, device, hidden_size=512, num_layers=4, dropout=0.3).to(device)
+    model = create_model(input_size, output_size, device, hidden_size=128, num_layers=2, dropout=0.3).to(device)
 
-    optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=0.01)
+    optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=0.0001)
     criterion = nn.CrossEntropyLoss(ignore_index=0)  # Ignore <PAD> index
-    scheduler = optim.lr_scheduler.OneCycleLR(optimizer, max_lr=0.01, epochs=num_epochs, steps_per_epoch=len(train_loader))
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=2, verbose=True)
 
 with ProgressBar(num_epochs, prefix='Epochs:', suffix='Complete', length=50) as pbar:
     for epoch in range(num_epochs):
@@ -139,3 +139,5 @@ with ProgressBar(num_epochs, prefix='Epochs:', suffix='Complete', length=50) as 
 
 print("Training completed")
 torch.save(model.state_dict(), 'final_model.pth')
+torch.save(vocab, 'vocab.pth')
+print("Vocabulary saved to vocab.pth")
