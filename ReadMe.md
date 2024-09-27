@@ -8,15 +8,42 @@
   <em>Boğaziçi BUCOLIN Lab</em>
 </p>
 
-# Ottoman NLP Toolkit
+# Ottoman NLP
 
-<p align="center">
-  <img src="items/ottominer_icon.png" alt="Ottominer Welcome Poster" width="400"/>
-</p>
+## Research Objectives
+
+This project aims to develop a state-of-the-art model for normalizing Ottoman Turkish texts. Using advanced Natural Language Processing (NLP) techniques, we transform non-standardized or noisy Ottoman Turkish text into a normalized form, facilitating further analysis and preservation of historical documents.
 
 ## Project Overview
 
-The Ottoman NLP Toolkit is a state-of-the-art computational linguistics project aimed at revolutionizing the processing and analysis of Ottoman Turkish texts. Developed by the BUCOLIN Lab at Boğaziçi University, this toolkit addresses the unique challenges posed by the Ottoman language's complex script and historical variations.
+The OttoMiner Toolkit is a cutting-edge computational linguistics project designed to revolutionize the processing and analysis of Ottoman Turkish texts. Developed by the BUCOLIN Lab at Boğaziçi University, this toolkit addresses the unique challenges posed by the Ottoman language's complex script and historical variations.
+
+Our toolkit consists of three main processing phases:
+
+### 1. ottominer
+
+- A static parsing module utilizing accessible PDF extraction libraries (Fitz, Pdfplumber)
+- Reformats unstructured texts using a modular regex detection mechanism
+- Aims to create contextual texts while minimizing sentence structure errors and noise patterns
+- Fully developed but requires updates for:
+  - Cross-platform applicability
+  - More robust corpus cleaning proficiency
+
+### 2. OttoRecognition
+
+- Currently in development
+- Focuses on creating an OCR-based machine learning algorithm to:
+  - Extract original Ottoman texts
+  - Automate transliteration into latinized Turkish
+- Goals:
+  - Enable uniform formatting of documents
+  - Increase available textual data (latinized versions of Ottoman texts are currently limited)
+
+### 3. Machine Translation Architecture
+
+To complement our static parsing package and address unforeseen errors, we're developing a Machine Translation (MT) architecture. This framework will help create more aligned data resources:
+
+
 ```
          ┌─────────┐                  ┌─────────┐
 Input -> │ Encoder │ -> Context ->    │ Decoder │ -> Output
@@ -24,53 +51,49 @@ Input -> │ Encoder │ -> Context ->    │ Decoder │ -> Output
              ↑                            ↑
         Embedding                    Embedding
 ```
-## Research Objectives
 
-This project aims to develop a state-of-the-art model for normalizing Ottoman Turkish texts. Using advanced Natural Language Processing (NLP) techniques, we transform non-standardized or noisy Ottoman Turkish text into a normalized form, facilitating further analysis and preservation of historical documents.
-## Key Features and Methodologies
+## Repository Guidelines
 
-### 1. Corpus Management System
-- **Version Control**: Git-based tracking for meticulous corpus evolution
-- **Authorization Protocols**: Role-based access control for collaborative research
-- **Metadata Management**: Comprehensive tagging system for efficient text categorization
+### Corpus-Texts
 
-### 2. Text Processing Pipeline
-- **OCR Enhancement**: Custom algorithms for Ottoman script recognition
-- **Normalization**: Standardization of orthographic variations
-- **Tokenization**: Context-aware segmentation of Ottoman compounds
+- Available at: [https://github.com/Ottoman-NLP/corpus-texts](https://github.com/Ottoman-NLP/corpus-texts)
+- Contains:
+  - Clean text resources for further training
+  - Datasets for text-mining and OCR detection
+- For more information, refer to the README file in the corpus-texts repository
 
-### 3. Advanced NLP Modules
-- **Morphological Analysis**: Rule-based and ML approaches for Ottoman morphology
-- **Named Entity Recognition**: Identification of historical figures, places, and events
-- **Semantic Analysis**: Vector space modeling of Ottoman lexical semantics
+### Parsing Package
 
-### 4. Seq2Seq - Decoder Encoder Model
-- **Model Architecture**: Our model employs a Sequence-to-Sequence (Seq2Seq) architecture with an Encoder-Decoder framework, powered by Long Short-Term Memory (LSTM) layers.
-- **Embedding Layer**:  Converts tokens to dense vectors
+To use ottominer for extracting PDF documents into TXT format:
 
-### 5. Researcher Interface
-- **Interactive Visualization**: Dynamic representation of linguistic patterns
-- **Query System**: Complex search capabilities across the corpus
-- **Annotation Tools**: Collaborative platform for scholarly markup
+1. Navigate to `ottominer-public/ottominer/HERE_ILL_PUT_EXE_FILE.exe`
+2. Use your custom PDF document folder as the path address
+3. The extraction will create a new folder with the same name as the input folder, but with a .txt extension for the extracted texts
+
+### Project-Based Documents & Texts
+
+- Located in the `corpus-texts` repository
+- For further details and acknowledgments, please read `/corpus-texts/README.md`
+
 
 ## Technical Specifications
 
-- **Programming Languages**: Python 3.8+, C++ for performance-critical components
-- **Machine Learning Frameworks**: PyTorch, TensorFlow
-- **Database**: MongoDB for flexible document storage
+- **Programming Languages**: Python 3.8+, Rust, C++
+- **Machine Learning Frameworks**: PyTorch, TensorFlow, T5, Seq2Seq
+- **Database**: plain-texts, csv and json for labelling
 - **Front-end**: React.js with D3.js for visualizations
 
 ## Installation and Setup
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Ottoman-NLP/Ottoman_LLM_Repos.git
-   cd Ottoman_NLP_Toolkit
+   git clone https://github.com/Ottoman-NLP/ottominer-public
+   cd ottominer-public
    ```
 
 2. Set up the environment:
    ```bash
-   python -m venv venv
+   python -m venv .venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    pip install -r requirements.txt
    ```
@@ -112,10 +135,6 @@ publisher={[ACL]}
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-This research is supported by grants from the Turkish Scientific and Technological Research Council (TÜBİTAK) and the European Research Council (ERC).
 
 ---
 
