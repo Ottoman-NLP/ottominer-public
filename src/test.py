@@ -6,26 +6,29 @@ from preprocess import load_data, goldset_dir
 from nltk.translate.bleu_score import corpus_bleu
 from collections import Counter
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 def correct_sentence(model, sentence, vocab, device):
     model.eval()
-    tokens = [vocab.stoi.get(token, vocab.stoi['<unk>']) for token in sentence.split()]
+    tokens = [char for char in sentence if char.strip()]
     
     if len(tokens) == 0:
         print(f"Warning: Empty sentence: '{sentence}'")
-        return sentence  # Return the original sentence if it's empty
-    
-    source = torch.LongTensor(tokens).unsqueeze(0).to(device)
+        return sentence
+
+    print(f"Original tokens: {tokens}")
+    source = torch.LongTensor([vocab.stoi.get(token, vocab.stoi['<unk>']) for token in tokens]).unsqueeze(0).to(device)
+    print(f"Encoded source: {source}")
     
     with torch.no_grad():
         try:
             output = model(source, source)
             predicted = output.argmax(2).squeeze(0)
-            corrected = [vocab.itos[token.item()] for token in predicted]
-            corrected_sentence = ' '.join(corrected)
+            print(f"Raw prediction: {predicted}")
+            corrected = ''.join([vocab.itos[token.item()] for token in predicted if vocab.itos[token.item()] not in ['<PAD>', '<UNK>', '<UNK>']])
             print(f"Original: {sentence}")
-            print(f"Corrected: {corrected_sentence}")
-            return corrected_sentence
+            print(f"Corrected: {corrected}")
+            return corrected
         except RuntimeError as e:
             print(f"Error processing sentence: {e}")
             return sentence
@@ -86,19 +89,24 @@ def exploratory_data_analysis(original_file, corrected_lines):
         'original_vocab_size': len(original_vocab),
         'corrected_vocab_size': len(corrected_vocab)
     }
-def main():
 
-    raw_data = load_data(goldset_dir)
-    vocab, _ = prepare_data(raw_data, freq_threshold=2)
+def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    vocab_path = os.path.join(os.path.dirname(__file__), 'vocab.pth')
+    vocab = torch.load(vocab_path)
     input_size = len(vocab.itos)
     output_size = len(vocab.itos)
-    model = create_model(input_size, output_size, device)
-    model_path = os.path.join(os.path.dirname(__file__), 'best_model.pth')
-    model.load_state_dict(torch.load(model_path))
+    model = create_model(input_size, output_size, device, hidden_size=64, num_layers=2, dropout=0.3)
+    model_path = 'best_model.pth'
+    model.load_state_dict(torch.load(model_path, map_location=device))
     model.to(device)
-    input_file = os.path.join('corpus-texts', 'MT_testset', 'original.txt')
-    output_file = os.path.join('corpus-texts', 'MT_testset', 'corrected.txt')
+
+    print(f"Vocabulary size: {len(vocab.itos)}")
+    print(f"First 10 vocab items: {list(vocab.itos.items())[:10]}")
+    print(f"Model structure: {model}")
+
+    input_file = Path(__file__).parent.parent.parent / 'corpus-texts' / 'MT_testset' / 'original.txt'
+    output_file = Path(__file__).parent.parent.parent / 'corpus-texts' / 'MT_testset' / 'corrected.txt'
     corrected_lines = correct_file(model, input_file, output_file, vocab, device)
 
     print(f"Corrected text has been written to {output_file}")
@@ -107,6 +115,7 @@ def main():
     # reference_file = os.path.join('corpus-texts', 'MT_testset', 'reference.txt')
     # bleu_score = calculate_bleu(reference_file, corrected_lines)
     # print(f"BLEU Score: {bleu_score}")
+
     eda_results = exploratory_data_analysis(input_file, corrected_lines)
     print("Exploratory Data Analysis Results:")
     print(f"Average Original Sentence Length: {eda_results['avg_original_length']:.2f}")
