@@ -19,7 +19,7 @@ def calculate_cleanliness(original, corrected):
 
 def create_llm():
     return OllamaLLM(
-        model="aya:latest",
+        model="aya:35b",
         callbacks=[StreamingStdOutCallbackHandler()],
         stop=["Human:", "Assistant:", "\n\n"],
         temperature=0.1,
@@ -44,18 +44,22 @@ def post_process(original, corrected):
     
     return corrected
 
-def process_file(input_file, output_file, stats_file):
+def process_chunk(chunk, chain):
     try:
-        llm = create_llm()
+        corrected_text = chain.run(text=chunk)
+        corrected_text = post_process(chunk, corrected_text)
+        cleanliness = calculate_cleanliness(chunk, corrected_text)
+        return corrected_text, cleanliness
     except Exception as e:
-        print(f"Error creating LLM: {str(e)}")
-        print("Skipping text correction process.")
-        return [], [], []
+        print(f"Error processing chunk: {chunk[:50]}...")
+        print(f"Error message: {str(e)}")
+        return chunk, 0
 
+def process_file(input_file, output_file, stats_file):
+    llm = create_llm()
     prompt = create_prompt()
     chain = LLMChain(llm=llm, prompt=prompt)
 
-    total_lines = sum(1 for _ in open(input_file, 'r', encoding='utf-8'))
     cleanliness_scores = []
     original_texts = []
     corrected_texts = []
@@ -65,49 +69,36 @@ def process_file(input_file, output_file, stats_file):
          open(stats_file, 'w', encoding='utf-8') as statsfile:
         
         lines = []
-        for line in tqdm(infile, total=total_lines, desc="Processing lines"):
+        for line in tqdm(infile, desc="Processing lines"):
             lines.append(line.strip())
             if len(lines) == 10:
-                original_text = "\n".join(lines)
-                try:
-                    corrected_text = chain.run(text=original_text)
-                    corrected_text = post_process(original_text, corrected_text)
-                    
-                    outfile.write(corrected_text + '\n\n')
-                    
-                    cleanliness = calculate_cleanliness(original_text, corrected_text)
-                    cleanliness_scores.append(cleanliness)
-                    statsfile.write(f"Original:\n{original_text}\n\nCorrected:\n{corrected_text}\n\nCleanliness: {cleanliness:.2f}\n\n")
-                    
-                    original_texts.append(original_text)
-                    corrected_texts.append(corrected_text)
-                except Exception as e:
-                    print(f"Error processing text: {original_text}")
-                    print(f"Error message: {str(e)}")
-                    outfile.write(original_text + '\n\n')
-                    statsfile.write(f"Original:\n{original_text}\nError: {str(e)}\n\n")
+                chunk = "\n".join(lines)
+                corrected_chunk, cleanliness = process_chunk(chunk, chain)
+                
+                outfile.write(corrected_chunk + '\n\n')
+                cleanliness_scores.append(cleanliness)
+                statsfile.write(f"Original:\n{chunk}\n\nCorrected:\n{corrected_chunk}\n\nCleanliness: {cleanliness:.2f}\n\n")
+                
+                original_texts.append(chunk)
+                corrected_texts.append(corrected_chunk)
                 
                 lines = []
+                
+                # Reset the LLM to clear the context
+                llm = create_llm()
+                chain = LLMChain(llm=llm, prompt=prompt)
         
+        # Process any remaining lines
         if lines:
-            original_text = "\n".join(lines)
-            try:
-                corrected_text = chain.run(text=original_text)
-                corrected_text = post_process(original_text, corrected_text)
-                
-                outfile.write(corrected_text + '\n\n')
-                
-                cleanliness = calculate_cleanliness(original_text, corrected_text)
-                cleanliness_scores.append(cleanliness)
-                statsfile.write(f"Original:\n{original_text}\n\nCorrected:\n{corrected_text}\n\nCleanliness: {cleanliness:.2f}\n\n")
-                
-                original_texts.append(original_text)
-                corrected_texts.append(corrected_text)
-            except Exception as e:
-                print(f"Error processing text: {original_text}")
-                print(f"Error message: {str(e)}")
-                outfile.write(original_text + '\n\n')
-                statsfile.write(f"Original:\n{original_text}\nError: {str(e)}\n\n")
+            chunk = "\n".join(lines)
+            corrected_chunk, cleanliness = process_chunk(chunk, chain)
+            
+            outfile.write(corrected_chunk + '\n\n')
+            cleanliness_scores.append(cleanliness)
+            statsfile.write(f"Original:\n{chunk}\n\nCorrected:\n{corrected_chunk}\n\nCleanliness: {cleanliness:.2f}\n\n")
+            
+            original_texts.append(chunk)
+            corrected_texts.append(corrected_chunk)
 
     return original_texts, corrected_texts, cleanliness_scores
 
@@ -180,8 +171,8 @@ def analyze_results(original_texts, corrected_texts, cleanliness_scores):
 
 def main():
     rd_ = Path(__file__).parents[2]
-    input_file = rd_ / 'corpus-texts' / 'datasets' / 'clean.txt'
-    output_file = rd_ / 'corpus-texts' / 'datasets' / 'everythinglm_corrected.txt'
+    input_file = rd_ / 'corpus-texts' / 'datasets' / 'everythinglm_corrected.txt'
+    output_file = rd_ / 'corpus-texts' / 'datasets' / 'everyfile.txt'
     stats_file = rd_ / 'corpus-texts' / 'datasets' / 'correction_stats.txt'
     os.makedirs(output_file.parent, exist_ok=True)
 
