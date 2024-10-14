@@ -19,7 +19,7 @@ def calculate_cleanliness(original, corrected):
 
 def create_llm():
     return OllamaLLM(
-        model="aya:35b",
+        model="aya:latest",
         callbacks=[StreamingStdOutCallbackHandler()],
         stop=["Human:", "Assistant:", "\n\n"],
         temperature=0.1,
@@ -28,32 +28,57 @@ def create_llm():
     )
 
 def create_prompt():
-    template = """Görev: Aşağıdaki Osmanlı Türkçesi metni düzelt ve temizle. Cümleleri ve kelimeleri anlamlı ve doğru bir şekilde yeniden düzenle. Osmanlı Türkçesi gramerini ve cümle anlamını koru. Noktalama işaretlerini düzelt ve gerektiğinde ekle. Kelimeleri doğru şekilde ayır ve yazım hatalarını düzelt. Sadece düzeltilmiş metni ver. Başka hiçbir şey ekleme.
+    template = """Görev: Aşağıdaki Osmanlı Türkçesi cümleyi düzelt ve temizle. Cümleyi anlamlı ve doğru bir şekilde yeniden düzenle. Osmanlı Türkçesi gramerini ve cümle anlamını koru. Noktalama işaretlerini düzelt ve gerektiğinde ekle. Kelimeleri doğru şekilde ayır ve yazım hatalarını düzelt. Sadece düzeltilmiş cümleyi ver. Başka hiçbir şey ekleme.
 
-Metin:
+Cümle:
 {text}
 
-Düzeltilmiş metin:"""
+Düzeltilmiş cümle:"""
     return PromptTemplate(template=template, input_variables=["text"])
 
 def post_process(original, corrected):
+    # Existing post-processing
     corrected = re.sub(r'[^a-zA-ZçÇğĞıİöÖşŞüÜ\s\d.,;:!?()-]', '', corrected)
     corrected = re.sub(r'([.,;:!?](?=\S))', r'\1 ', corrected)
     corrected = re.sub(r'\s+', ' ', corrected).strip()
     corrected = corrected.replace('›', 'ı').replace('‹', 'i')
     
+    # Additional post-processing for abbreviations and Sultan titles
+    corrected = re.sub(r'(Hz)\.\s+', r'\1. ', corrected)  # Correct spacing after Hz.
+    corrected = re.sub(r'Sultan\s+([IVX]+)\.\s*(\w+)', r'Sultan \1. \2', corrected)  # Correct Sultan numeral formatting
+    
     return corrected
 
-def process_chunk(chunk, chain):
-    try:
-        corrected_text = chain.run(text=chunk)
-        corrected_text = post_process(chunk, corrected_text)
-        cleanliness = calculate_cleanliness(chunk, corrected_text)
-        return corrected_text, cleanliness
-    except Exception as e:
-        print(f"Error processing chunk: {chunk[:50]}...")
-        print(f"Error message: {str(e)}")
-        return chunk, 0
+def needs_correction(sentence):
+    # Check for severe issues that indicate a need for correction
+    severe_issues = [
+        r'\d+\s*\]\s*,\s*\d+',  # Numbers with brackets and commas (e.g., "1037], 5")
+        r'\w+\d+\w+',           # Words with numbers in the middle (e.g., "kaddesallahü5")
+        r'[a-zA-Z]{20,}',       # Very long words (likely concatenated)
+        r'(\w+)(\1\s*){3,}',    # Words repeated more than 3 times
+        r'\([^)]*\d+[^)]*\)',   # Parentheses containing numbers
+        r'\w+\s*-\s*\w+\s*-\s*\w+',  # Multiple words connected with hyphens
+        r'\b(\w{1,2}\s+){3,}',  # Sequence of very short words (1-2 characters)
+        r'\b[A-Z][a-z]*\.\s+[A-Z][a-z]*\.',  # Incorrect abbreviation spacing (e.g., "Hz. ")
+        r'Sultan\s+[IVX]+\.\s*\n',  # Incorrect Sultan numeral formatting
+        r'\s+[.,;:!?]',         # Spaces before punctuation
+        r'[.,;:!?](?!\s|$)',    # Missing spaces after punctuation
+    ]
+    return any(re.search(pattern, sentence) for pattern in severe_issues)
+
+def process_sentence(sentence, chain):
+    if needs_correction(sentence):
+        try:
+            corrected_sentence = chain.run(text=sentence)
+            corrected_sentence = post_process(sentence, corrected_sentence)
+            cleanliness = calculate_cleanliness(sentence, corrected_sentence)
+            return corrected_sentence, cleanliness, True
+        except Exception as e:
+            print(f"Error processing sentence: {sentence[:50]}...")
+            print(f"Error message: {str(e)}")
+            return sentence, 0, False
+    else:
+        return sentence, 1, False
 
 def process_file(input_file, output_file, stats_file):
     llm = create_llm()
@@ -63,43 +88,31 @@ def process_file(input_file, output_file, stats_file):
     cleanliness_scores = []
     original_texts = []
     corrected_texts = []
+    sentences_processed = 0
+    sentences_corrected = 0
 
     with open(input_file, 'r', encoding='utf-8') as infile, \
          open(output_file, 'w', encoding='utf-8') as outfile, \
          open(stats_file, 'w', encoding='utf-8') as statsfile:
         
-        lines = []
         for line in tqdm(infile, desc="Processing lines"):
-            lines.append(line.strip())
-            if len(lines) == 10:
-                chunk = "\n".join(lines)
-                corrected_chunk, cleanliness = process_chunk(chunk, chain)
+            sentences = re.split(r'(?<=[.!?])\s+', line.strip())
+            for sentence in sentences:
+                sentences_processed += 1
+                corrected_sentence, cleanliness, was_corrected = process_sentence(sentence, chain)
                 
-                outfile.write(corrected_chunk + '\n\n')
-                cleanliness_scores.append(cleanliness)
-                statsfile.write(f"Original:\n{chunk}\n\nCorrected:\n{corrected_chunk}\n\nCleanliness: {cleanliness:.2f}\n\n")
-                
-                original_texts.append(chunk)
-                corrected_texts.append(corrected_chunk)
-                
-                lines = []
-                
-                # Reset the LLM to clear the context
-                llm = create_llm()
-                chain = LLMChain(llm=llm, prompt=prompt)
-        
-        # Process any remaining lines
-        if lines:
-            chunk = "\n".join(lines)
-            corrected_chunk, cleanliness = process_chunk(chunk, chain)
+                outfile.write(corrected_sentence + ' ')
+                if was_corrected:
+                    sentences_corrected += 1
+                    cleanliness_scores.append(cleanliness)
+                    statsfile.write(f"Original: {sentence}\nCorrected: {corrected_sentence}\nCleanliness: {cleanliness:.2f}\n\n")
+                    original_texts.append(sentence)
+                    corrected_texts.append(corrected_sentence)
             
-            outfile.write(corrected_chunk + '\n\n')
-            cleanliness_scores.append(cleanliness)
-            statsfile.write(f"Original:\n{chunk}\n\nCorrected:\n{corrected_chunk}\n\nCleanliness: {cleanliness:.2f}\n\n")
-            
-            original_texts.append(chunk)
-            corrected_texts.append(corrected_chunk)
+            outfile.write('\n')
 
+    print(f"Total sentences processed: {sentences_processed}")
+    print(f"Sentences corrected: {sentences_corrected}")
     return original_texts, corrected_texts, cleanliness_scores
 
 def analyze_results(original_texts, corrected_texts, cleanliness_scores):
