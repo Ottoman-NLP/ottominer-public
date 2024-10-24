@@ -4,6 +4,7 @@ for letters and unknown characters.
 """
 
 char_setup = {
+
     'â': 'a', 'Â': 'A',
     'ā': 'a', 'Ā': 'A',
     "ê": "e",
@@ -14,6 +15,7 @@ char_setup = {
     'û': 'u', 'Û': 'U',
     "ô": "ö",
     "ō": "o",  "Ō": "Ö",
+    
 }
 
 unknown_char_setup = {

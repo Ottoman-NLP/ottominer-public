@@ -3,7 +3,7 @@ import pdfminer.encodingdb
 from pdfminer.pdfinterp import adobe_glyph_list
 
 def get_char_map(doc, xref):
-    font_info = pdf.extract_font(xref)
+    font_info = doc.extract_font(xref)
     char_map = {}
 
     # Try to use cmap
