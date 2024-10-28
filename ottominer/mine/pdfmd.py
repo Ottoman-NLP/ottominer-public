@@ -18,7 +18,15 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from pathlib import Path
-
+import matplotlib.pyplot as plt
+from visualize import CorpusVisualizer
+from network_visualizer import NetworkVisualizer  # Instead of CorpusVisualizer
+try:
+    import seaborn as sns
+    plt.style.use('seaborn')
+except (ImportError, OSError):
+    # Fallback to a default style if seaborn isn't available
+    plt.style.use('default')
 
 def initialize_nltk():
     """Initialize NLTK by downloading required resources."""
@@ -29,62 +37,104 @@ def initialize_nltk():
 
 
 def load_data_files():
-    current_dir = Path(__file__).parent
-    
-    # Load all data files
-    with open(current_dir / 'data' / 'stopwords.json', 'r', encoding='utf-8') as f:
-        OTTOMAN_STOPWORDS = set(json.load(f)['particles_and_conjunctions'])
-    
-    with open(current_dir / 'data' / 'semantic_fields.json', 'r', encoding='utf-8') as f:
-        SEMANTIC_FIELDS = json.load(f)
-    
-    with open(current_dir / 'data' / 'suffixes.json', 'r', encoding='utf-8') as f:
-        OTTOMAN_SUFFIXES = json.load(f)
-    
-    with open(current_dir / 'data' / 'register_markers.json', 'r', encoding='utf-8') as f:
-        REGISTER_MARKERS = json.load(f)
+    """Load data files with error handling."""
+    try:
+        current_dir = Path(__file__).parent
+        data_dir = current_dir / 'data'
         
-    with open(current_dir / 'data' / 'style_markers.json', 'r', encoding='utf-8') as f:
-        STYLE_MARKERS = json.load(f)
-    
-    return OTTOMAN_STOPWORDS, SEMANTIC_FIELDS, OTTOMAN_SUFFIXES, REGISTER_MARKERS, STYLE_MARKERS
+        # Initialize data dictionary
+        data = {
+            'OTTOMAN_STOPWORDS': set(),
+            'SEMANTIC_FIELDS': {},
+            'OTTOMAN_SUFFIXES': {},
+            'REGISTER_MARKERS': {},
+            'STYLE_MARKERS': {}
+        }
+        
+        required_files = {
+            'OTTOMAN_STOPWORDS': 'stopwords.json',
+            'SEMANTIC_FIELDS': 'semantic_fields.json',
+            'OTTOMAN_SUFFIXES': 'suffixes.json',
+            'REGISTER_MARKERS': 'register_markers.json',
+            'STYLE_MARKERS': 'style_markers.json'
+        }
+        
+        for key, filename in required_files.items():
+            try:
+                file_path = data_dir / filename
+                print(f"Loading {filename} from {file_path}")  # Debug print
+                
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    loaded_data = json.load(f)
+                    if key == 'OTTOMAN_STOPWORDS':
+                        data[key] = set(loaded_data['particles_and_conjunctions'])
+                    else:
+                        data[key] = loaded_data
+                print(f"Successfully loaded {key}")  # Debug print
+                
+            except FileNotFoundError:
+                print(f"Warning: {filename} not found in {data_dir}")
+            except json.JSONDecodeError:
+                print(f"Warning: {filename} is not valid JSON")
+            except Exception as e:
+                print(f"Error loading {filename}: {str(e)}")
+        
+        return data
+    except Exception as e:
+        print(f"Error in load_data_files: {str(e)}")
+        return {
+            'OTTOMAN_STOPWORDS': set(),
+            'SEMANTIC_FIELDS': {},
+            'OTTOMAN_SUFFIXES': {},
+            'REGISTER_MARKERS': {},
+            'STYLE_MARKERS': {}
+        }
 
 # Load data at module level
-OTTOMAN_STOPWORDS, SEMANTIC_FIELDS, OTTOMAN_SUFFIXES, REGISTER_MARKERS, STYLE_MARKERS = load_data_files()
+data = load_data_files()
+OTTOMAN_STOPWORDS = data['OTTOMAN_STOPWORDS']
+SEMANTIC_FIELDS = data['SEMANTIC_FIELDS']
+OTTOMAN_SUFFIXES = data['OTTOMAN_SUFFIXES']
+REGISTER_MARKERS = data['REGISTER_MARKERS']
+STYLE_MARKERS = data['STYLE_MARKERS']
 
-# Load data at module level
-OTTOMAN_STOPWORDS, SEMANTIC_FIELDS, OTTOMAN_SUFFIXES = load_data_files()
-
-class SemanticAnalyzer:
-    """Handles semantic analysis of Ottoman Turkish texts."""
-    
-    def __init__(self):
-        self.semantic_fields = SEMANTIC_FIELDS
-        self.vectorizer = TfidfVectorizer(lowercase=True, ngram_range=(1, 2))
+# Validate loaded data
+print("\nValidating loaded data:")
+print(f"OTTOMAN_SUFFIXES loaded: {bool(OTTOMAN_SUFFIXES)}")
+print(f"REGISTER_MARKERS loaded: {bool(REGISTER_MARKERS)}")
+print(f"Number of suffixes categories: {len(OTTOMAN_SUFFIXES)}")
+print(f"Number of register markers: {len(REGISTER_MARKERS)}")
 
 stats = {
-    'period_counts': defaultdict(int),
-    'region_counts': defaultdict(int),
-    'token_counts': defaultdict(int),
-    'tokens_by_region': defaultdict(int),
-    'token_counts_no_stopwords': defaultdict(int),
-    'tokens_by_region_no_stopwords': defaultdict(int),
-    'lexical_diversity': defaultdict(list),
-    'lexical_diversity_no_stopwords': defaultdict(list),
-    'lexical_diversity_by_period': defaultdict(list),
-    'lexical_diversity_no_stopwords_by_period': defaultdict(list),
-    'stopwords_ratios': defaultdict(list),
-    'parallel_texts': [],
-    'parallel_metrics': {
-        'similarity_scores': [],
-        'length_ratios': [],
-        'shared_vocabulary_ratios': []
+    'document_counts': {
+        'total': 0,
+        'by_region': defaultdict(int),
+        'by_period': defaultdict(int)
+    },
+    'token_statistics': {
+        'total': 0,
+        'by_region': defaultdict(int),
+        'no_stopwords': {
+            'total': 0,
+            'by_region': defaultdict(int)
+        }
+    },
+    'lexical_diversity': {
+        'overall': 0.0,
+        'by_region': defaultdict(list),
+        'by_period': defaultdict(list)
+    },
+    'parallel_texts': {
+        'total_pairs': 0,
+        'by_region': defaultdict(list),
+        'samples': []
     }
 }
 
+
  ######################## ------------------------ ########################
  # Common Ottoman Turkish Stopwords                                       # 
- #       They are for experimental use only                               # 
+ #       They are for experimental use only                               #
  #                                     update as needed                   #
  ######################## ------------------------ ########################
 
@@ -369,80 +419,77 @@ def sent_tokenize(text):
     sentences = re.split(r'[.!?]+', text)
     # Clean up and filter empty sentences
     return [sent.strip() for sent in sentences if sent.strip()]
-
-def create_enhanced_corpus_stats(stats, base_output_path):
-    """Create enhanced corpus statistics including parallel text analysis."""
-    corpus_stats = {
-        'document_counts': {
-            'by_period': dict(stats['period_counts']),
-            'by_region': dict(stats['region_counts'])
-        },
-        'token_statistics': {
-            'by_period': dict(stats['token_counts']),
-            'by_region': dict(stats['tokens_by_region']),
-            'no_stopwords': {
-                'by_period': dict(stats['token_counts_no_stopwords']),
-                'by_region': dict(stats['tokens_by_region_no_stopwords'])
-            }
-        },
-        'lexical_diversity': {
-            'by_region': {region: np.mean(values) for region, values in stats['lexical_diversity'].items()},
-            'by_period': {period: np.mean(values) for period, values in stats['lexical_diversity_by_period'].items()}
-        },
-        'parallel_text_analysis': {
-            'pair_count': len(stats['parallel_texts']),
-            'average_similarity': np.mean(stats['parallel_metrics']['similarity_scores']) if stats['parallel_metrics']['similarity_scores'] else 0,
-            'average_length_ratio': np.mean(stats['parallel_metrics']['length_ratios']) if stats['parallel_metrics']['length_ratios'] else 0,
-            'average_shared_vocabulary': np.mean(stats['parallel_metrics']['shared_vocabulary_ratios']) if stats['parallel_metrics']['shared_vocabulary_ratios'] else 0,
-            'similarity_distribution': {
-                'min': np.min(stats['parallel_metrics']['similarity_scores']) if stats['parallel_metrics']['similarity_scores'] else 0,
-                'max': np.max(stats['parallel_metrics']['similarity_scores']) if stats['parallel_metrics']['similarity_scores'] else 0,
-                'std': np.std(stats['parallel_metrics']['similarity_scores']) if stats['parallel_metrics']['similarity_scores'] else 0
-            }
+def create_enhanced_corpus_stats(stats: dict, base_output_path: pathlib.Path) -> None:
+    """Create enhanced corpus statistics including morphological analysis."""
+    print("\nCreating enhanced corpus statistics...")
+    
+    print("Processing document counts...")
+    document_counts = {
+        'by_period': dict(stats['document_counts']['by_period']),
+        'by_region': dict(stats['document_counts']['by_region'])
+    }
+    
+    print("Processing token statistics...")
+    token_stats = {
+        'by_period': dict(stats['token_statistics'].get('by_period', {})),
+        'by_region': dict(stats['token_statistics']['by_region']),
+        'no_stopwords': {
+            'by_period': dict(stats['token_statistics']['no_stopwords'].get('by_period', {})),
+            'by_region': dict(stats['token_statistics']['no_stopwords']['by_region'])
         }
     }
     
-    # Save enhanced corpus stats
+    print("Processing lexical diversity...")
+    lex_diversity = {
+        'by_region': dict(stats['lexical_diversity']['by_region']),
+        'by_period': dict(stats['lexical_diversity']['by_period'])
+    }
+    
+    corpus_stats = {
+        'document_counts': document_counts,
+        'token_statistics': token_stats,
+        'lexical_diversity': lex_diversity,
+        'parallel_texts': dict(stats['parallel_texts'])
+    }
+    
+    print("Saving enhanced corpus stats...")
     stats_path = base_output_path / "md_out" / "enhanced_corpus_stats.yaml"
+    stats_path.parent.mkdir(parents=True, exist_ok=True)
     with open(stats_path, 'w', encoding='utf-8') as f:
         yaml.dump(corpus_stats, f, allow_unicode=True)
-
+    print(f"Stats saved to: {stats_path}")
 ###############################################################
 #        Parallel texts added for additional data analysis    #
 ###############################################################
 
-def extract_parallel_texts(text: str) -> list:
+def extract_parallel_texts(text) -> list:
     """Extract parallel texts based on formatting patterns."""
-    parallel_pairs = []
-    lines = text.split('\n')
-    current_original = []
+    # Handle Document objects or lists of Documents
+    if hasattr(text, 'get_text'):
+        text = text.get_text()
+    elif isinstance(text, list):
+        # If list contains Document objects, extract text from each
+        text = ' '.join(doc.get_text() if hasattr(doc, 'get_text') else str(doc) 
+                       for doc in text)
+    elif not isinstance(text, str):
+        text = str(text)
     
-    for i, line in enumerate(lines):
-        line = line.strip()
-        if not line:
-            continue
-            
-        # If we find an underscored text, it's likely a translation
-        if line.startswith('_') and line.endswith('_'):
-            # Look at previous non-empty lines for original text
-            if current_original:
-                original_text = '\n'.join(current_original).strip()
-                translation = line.strip('_').strip()
-                
-                # Analyze the pair
-                pair_analysis = analyze_parallel_text_pair(original_text, translation)
-                if pair_analysis['pair_metrics']['cosine_similarity'] > 0.3:  # Minimum similarity threshold
-                    parallel_pairs.append({
-                        'original': original_text,
-                        'translation': translation,
-                        'metrics': pair_analysis['pair_metrics'],
-                        'similarity_score': pair_analysis['pair_metrics']['cosine_similarity']
-                    })
-                current_original = []
-        else:
-            current_original.append(line)
+    pairs = []
+    patterns = [
+        r'Original:\s*(.*?)\s*Translation:\s*(.*?)(?=Original:|$)',
+        r'Ottoman:\s*(.*?)\s*Modern:\s*(.*?)(?=Ottoman:|$)',
+        r'Source:\s*(.*?)\s*Target:\s*(.*?)(?=Source:|$)'
+    ]
     
-    return parallel_pairs
+    for pattern in patterns:
+        matches = re.finditer(pattern, text, re.DOTALL)
+        for match in matches:
+            original = match.group(1).strip()
+            translation = match.group(2).strip()
+            if original and translation:
+                pairs.append((original, translation))
+    
+    return pairs
 
 def is_valid_translation_pair(original: str, translation: str) -> bool:
     """
@@ -560,20 +607,28 @@ def update_statistics(stats, metadata, region, text_stats):
 
 def verify_parallel_pairs(pairs, similarity_threshold=0.3):
     """Verify parallel pairs using similarity threshold."""
+    print(f"\nVerifying parallel pairs with threshold: {similarity_threshold}")
+    print(f"Total pairs to verify: {len(pairs)}")
     verified_pairs = []
-    for pair in pairs:
+    
+    for i, pair in enumerate(pairs):
+        print(f"\nProcessing pair {i+1}/{len(pairs)}")
         original, translation = pair['original'], pair['translation']
         
-        # Normalize both texts using the character mapping
+        print("Normalizing texts...")
         normalized_original = normalize_text(original)
         normalized_translation = normalize_text(translation)
         
+        print("Calculating similarity...")
         similarity = calculate_similarity(normalized_original, normalized_translation)
+        print(f"Similarity score: {similarity:.3f}")
+        
         if similarity >= similarity_threshold:
-            # Calculate length ratio
+            print("Pair passed similarity threshold")
             orig_tokens = word_tokenize(original)
             trans_tokens = word_tokenize(translation)
             length_ratio = len(trans_tokens) / len(orig_tokens) if orig_tokens else 0
+            print(f"Length ratio: {length_ratio:.3f}")
             
             verified_pairs.append({
                 'original': original,
@@ -584,117 +639,150 @@ def verify_parallel_pairs(pairs, similarity_threshold=0.3):
                     'similarity': similarity
                 }
             })
+        else:
+            print("Pair failed similarity threshold")
 
+    print(f"\nVerification complete. Verified {len(verified_pairs)}/{len(pairs)} pairs")
     return verified_pairs
+
+def calculate_morphological_complexity(texts):
+    """Calculate morphological complexity of Ottoman Turkish texts."""
+    try:
+        # Use the already loaded OTTOMAN_SUFFIXES from data/suffixes.json
+        if not isinstance(OTTOMAN_SUFFIXES, dict):
+            print("Error: OTTOMAN_SUFFIXES not properly loaded")
+            return 0.0
+            
+        print("\nCalculating morphological complexity...")
+        print(f"Processing {len(texts)} texts")
+        complexity_scores = []
+        
+        for i, text in enumerate(texts):
+            print(f"\nProcessing text {i+1}/{len(texts)}")
+            normalized_text = re.sub(r'[^\w\s]', '', text.lower())
+            words = word_tokenize(normalized_text)
+            
+            if not words:
+                print("Skipping empty text")
+                continue
+                
+            morpheme_counts = []
+            for word in words:
+                count = 0
+                # Iterate through all suffix categories in the loaded JSON
+                for category, suffix_list in OTTOMAN_SUFFIXES.items():
+                    for suffix in suffix_list:
+                        if word.endswith(suffix):
+                            count += 1
+                morpheme_counts.append(count)
+            
+            if morpheme_counts:
+                avg_complexity = np.mean(morpheme_counts)
+                complexity_scores.append(avg_complexity)
+        
+        final_score = np.mean(complexity_scores) if complexity_scores else 0.0
+        return final_score
+        
+    except Exception as e:
+        print(f"Error in morphological complexity calculation: {str(e)}")
+        return 0.0
 
 def analyze_text_complexity(text: str) -> dict:
     """Analyze text complexity including morphological features."""
+    print("\nAnalyzing text complexity...")
+    print(f"Input text length: {len(text)}")
+    
+    morph_complexity = calculate_morphological_complexity([text])
+    print(f"Morphological complexity: {morph_complexity:.3f}")
+    
+    words = word_tokenize(text)
+    avg_word_length = np.mean([len(word) for word in words])
+    print(f"Average word length: {avg_word_length:.3f}")
+    
+    print("Analyzing suffix distribution...")
+    suffix_dist = analyze_suffix_distribution(text)
+    print(f"Suffix distribution: {suffix_dist}")
+    
     return {
-        'morphological_complexity': calculate_morphological_complexity([text]),
-        'average_word_length': np.mean([len(word) for word in word_tokenize(text)]),
-        'suffix_distribution': analyze_suffix_distribution(text)
+        'morphological_complexity': morph_complexity,
+        'average_word_length': avg_word_length,
+        'suffix_distribution': suffix_dist
     }
 
 def analyze_suffix_distribution(text: str) -> dict:
     """Analyze distribution of different suffix types."""
+    print("\nAnalyzing suffix distribution...")
     normalized_text = re.sub(r'[^\w\s]', '', text.lower())
     words = word_tokenize(normalized_text)
+    print(f"Processing {len(words)} words")
     
     suffix_counts = defaultdict(int)
-    for word in words:
+    for i, word in enumerate(words):
+        if i % 1000 == 0:  # Progress update
+            print(f"Processing word {i+1}/{len(words)}")
         for category, suffixes in OTTOMAN_SUFFIXES.items():
             for suffix in suffixes:
                 if word.endswith(suffix):
                     suffix_counts[category] += 1
-    
+                    
+    print("Suffix analysis complete")
+    print(f"Found suffixes in categories: {dict(suffix_counts)}")
     return dict(suffix_counts)
-
-def pdf_to_markdown(pdf_file: pathlib.Path, stats: dict, semantic: bool = False) -> bool:
-    """Process PDF file and extract text features."""
-    try:
-        text = pymupdf4llm.extract_text(str(pdf_file))
-        if not text.strip():
-            return False
-            
-        # Extract metadata and region
-        metadata = extract_metadata(pdf_file)
-        region = pdf_file.parent.name
-        
-        # Calculate text complexity metrics
-        complexity_analysis = analyze_text_complexity(text)
-        
-        # Update stats with complexity metrics
-        if 'morphological_analysis' not in stats:
-            stats['morphological_analysis'] = defaultdict(list)
-        stats['morphological_analysis'][region].append(complexity_analysis['morphological_complexity'])
-        
-        # Update metadata with complexity metrics
-        metadata['statistics']['text_complexity'] = {
-            'morphological_complexity': float(complexity_analysis['morphological_complexity']),
-            'average_word_length': float(complexity_analysis['average_word_length']),
-            'suffix_distribution': complexity_analysis['suffix_distribution']
-        }
-        
-        # Create output structure and save
-        output_dir = create_output_structure(pdf_file)
-        with open(output_dir / 'metadata.yaml', 'w', encoding='utf-8') as f:
-            yaml.dump(metadata, f, allow_unicode=True)
-        
-        return True
-        
-    except Exception as e:
-        print(f"Error processing {pdf_file}: {str(e)}")
-        traceback.print_exc()
-        return False
 
 def create_enhanced_corpus_stats(stats: dict, base_output_path: pathlib.Path) -> None:
     """Create enhanced corpus statistics including morphological analysis."""
-    corpus_stats = {
-        'document_counts': {
-            'by_period': dict(stats['period_counts']),
-            'by_region': dict(stats['region_counts'])
-        },
-        'token_statistics': {
-            'by_period': dict(stats['token_counts']),
-            'by_region': dict(stats['tokens_by_region']),
-            'no_stopwords': {
-                'by_period': dict(stats['token_counts_no_stopwords']),
-                'by_region': dict(stats['tokens_by_region_no_stopwords'])
-            }
-        },
-        'morphological_analysis': {
-            'by_region': {
-                region: float(np.mean(values)) 
-                for region, values in stats.get('morphological_analysis', {}).items()
-            }
-        },
-        'lexical_diversity': {
-            'by_region': {
-                region: np.mean(values) 
-                for region, values in stats['lexical_diversity'].items()
-            },
-            'by_period': {
-                period: np.mean(values) 
-                for period, values in stats['lexical_diversity_by_period'].items()
-            }
+    print("\nCreating enhanced corpus statistics...")
+    
+    print("Processing document counts...")
+    document_counts = {
+        'by_period': dict(stats['document_counts']['by_period']),
+        'by_region': dict(stats['document_counts']['by_region'])
+    }
+    
+    print("Processing token statistics...")
+    token_stats = {
+        'by_period': dict(stats['token_statistics'].get('by_period', {})),
+        'by_region': dict(stats['token_statistics']['by_region']),
+        'no_stopwords': {
+            'by_period': dict(stats['token_statistics']['no_stopwords'].get('by_period', {})),
+            'by_region': dict(stats['token_statistics']['no_stopwords']['by_region'])
         }
     }
     
-    # Save enhanced corpus stats
+    print("Processing lexical diversity...")
+    lex_diversity = {
+        'by_region': dict(stats['lexical_diversity']['by_region']),
+        'by_period': dict(stats['lexical_diversity']['by_period'])
+    }
+    
+    corpus_stats = {
+        'document_counts': document_counts,
+        'token_statistics': token_stats,
+        'lexical_diversity': lex_diversity,
+        'parallel_texts': dict(stats['parallel_texts'])
+    }
+    
+    print("Saving enhanced corpus stats...")
     stats_path = base_output_path / "md_out" / "enhanced_corpus_stats.yaml"
+    stats_path.parent.mkdir(parents=True, exist_ok=True)
     with open(stats_path, 'w', encoding='utf-8') as f:
         yaml.dump(corpus_stats, f, allow_unicode=True)
+    print(f"Stats saved to: {stats_path}")
 
-# Add this to the visualizer class
 def plot_morphological_complexity(self):
+    """Create visualization for morphological complexity across regions."""
+    print("\nPlotting morphological complexity...")
     import matplotlib.pyplot as plt
     import seaborn as sns
-    """Create visualization for morphological complexity across regions."""
+    
+    print("Setting up plot...")
     plt.figure(figsize=(12, 6))
     
     regions = list(self.stats['morphological_analysis']['by_region'].keys())
     complexity_scores = [self.stats['morphological_analysis']['by_region'][r] for r in regions]
+    print(f"Plotting data for {len(regions)} regions")
     
+    print("Creating bar plot...")
     sns.barplot(x=regions, y=complexity_scores)
     plt.title('Morphological Complexity by Region')
     plt.xlabel('Region')
@@ -702,147 +790,357 @@ def plot_morphological_complexity(self):
     plt.xticks(rotation=45)
     plt.tight_layout()
     
+    print("Saving plot...")
     plt.savefig('morphological_complexity.png', dpi=300, bbox_inches='tight')
     plt.close()
-
+    print("Plot saved as morphological_complexity.png")
 
 def pdf_to_markdown(pdf_file: pathlib.Path, stats: dict, semantic: bool = False) -> bool:
     """Process PDF file and extract parallel texts."""
+    print(f"\nProcessing PDF file: {pdf_file}")
+    
     try:
-        # Extract text
-        text = pymupdf4llm.extract_text(str(pdf_file))
-        if not text.strip():
-            return False
-            
-        # Extract metadata
-        metadata = create_metadata(pdf_file)
+        print("Extracting text from PDF...")
+        region = pdf_file.parent.name
         
-        # Extract parallel texts
-        parallel_pairs = extract_parallel_texts(text)
+        # Extract period from filename (e.g., "Text_1800.pdf" -> "1800")
+        period = None
+        filename = pdf_file.stem
+        year_match = re.search(r'_(\d{4})', filename)
+        if year_match:
+            period = year_match.group(1)
         
-        # Update stats with parallel text information
-        if parallel_pairs:
-            stats['parallel_texts'].extend(parallel_pairs)
-            for pair in parallel_pairs:
-                stats['parallel_metrics']['similarity_scores'].append(pair['similarity_score'])
-                stats['parallel_metrics']['length_ratios'].append(pair['metrics']['length_ratio'])
-                stats['parallel_metrics']['shared_vocabulary_ratios'].append(pair['metrics']['shared_vocabulary_ratio'])
-        
-        # Create output directory structure
-        output_dir = create_output_structure(pdf_file)
-        
-        # Save parallel texts if found
-        if parallel_pairs:
-            save_parallel_texts(parallel_pairs, output_dir)
-            
-        # Save metadata with parallel text information
-        metadata['statistics']['parallel_texts'] = {
-            'count': len(parallel_pairs),
-            'average_similarity': float(np.mean([p['similarity_score'] for p in parallel_pairs])) if parallel_pairs else 0
+        # Initialize text stats with all required fields
+        text_stats = {
+            'token_count': 0,
+            'token_count_no_stopwords': 0,
+            'unique_tokens_no_stopwords': 0,
+            'lexical_diversity_no_stopwords': 0.0,
+            'stopwords_ratio': 0.0,
+            'semantic_analysis': {},
+            'unique_tokens': 0,
+            'sentence_count': 0,
+            'lexical_diversity': 0.0,
+            'semantic_fields': {},
+            'style_markers': {},
+            'period': period,
+            'morphological_complexity': 0.0,
+            'average_word_length': 0.0,
+            'punctuation_density': 0.0,
+            'formality_score': 0.0
         }
         
-        with open(output_dir / 'metadata.yaml', 'w', encoding='utf-8') as f:
-            yaml.dump(metadata, f, allow_unicode=True)
+        # Extract text using PyMuPDF
+        import fitz
+        try:
+            doc = fitz.open(str(pdf_file))
+            text = ""
+            for page in doc:
+                text += page.get_text()
+            doc.close()
+        except Exception as e:
+            print(f"Error extracting text from PDF: {str(e)}")
+            return False
+        
+        # Calculate basic stats
+        tokens = word_tokenize(text)
+        unique_tokens = set(tokens)
+        sentences = sent_tokenize(text)
+        
+        # Calculate stats without stopwords
+        tokens_no_stopwords = [
+            token.lower() for token in tokens 
+            if token.lower() not in OTTOMAN_STOPWORDS
+        ]
+        unique_tokens_no_stopwords = set(tokens_no_stopwords)
+        
+        # Calculate additional metrics
+        if tokens:
+            stopwords_ratio = (len(tokens) - len(tokens_no_stopwords)) / len(tokens)
+            average_word_length = np.mean([len(token) for token in tokens])
+            lexical_diversity = len(unique_tokens) / len(tokens)
+            lexical_diversity_no_stopwords = len(unique_tokens_no_stopwords) / len(tokens_no_stopwords) if tokens_no_stopwords else 0.0
+        else:
+            stopwords_ratio = 0.0
+            average_word_length = 0.0
+            lexical_diversity = 0.0
+            lexical_diversity_no_stopwords = 0.0
+        
+        # Calculate morphological complexity
+        morphological_complexity = calculate_morphological_complexity([text])
+        
+        # Calculate punctuation density
+        punct_density = calculate_punctuation_density([text])
+        
+        # Calculate formality score
+        formality_score = calculate_register_score(tokens)
+        
+        # Update text stats
+        text_stats.update({
+            'token_count': len(tokens),
+            'token_count_no_stopwords': len(tokens_no_stopwords),
+            'unique_tokens': len(unique_tokens),
+            'unique_tokens_no_stopwords': len(unique_tokens_no_stopwords),
+            'sentence_count': len(sentences),
+            'lexical_diversity': lexical_diversity,
+            'lexical_diversity_no_stopwords': lexical_diversity_no_stopwords,
+            'stopwords_ratio': stopwords_ratio,
+            'average_word_length': average_word_length,
+            'morphological_complexity': morphological_complexity,
+            'punctuation_density': punct_density['average_density'],
+            'formality_score': formality_score
+        })
+        
+        # Create metadata with the required arguments
+        metadata = create_metadata(pdf_file, region, text_stats)
+        
+        # Update global stats
+        # Initialize region entries if they don't exist
+        for stat_category in ['document_counts', 'token_statistics', 'lexical_diversity']:
+            if region not in stats[stat_category]['by_region']:
+                stats[stat_category]['by_region'][region] = 0 if stat_category != 'lexical_diversity' else []
+        
+        if region not in stats['token_statistics']['no_stopwords']['by_region']:
+            stats['token_statistics']['no_stopwords']['by_region'][region] = 0
             
-        return True
+        # Update counts
+        stats['document_counts']['total'] += 1
+        stats['document_counts']['by_region'][region] += 1
+        stats['token_statistics']['total'] += text_stats['token_count']
+        stats['token_statistics']['by_region'][region] += text_stats['token_count']
+        stats['token_statistics']['no_stopwords']['total'] += text_stats['token_count_no_stopwords']
+        stats['token_statistics']['no_stopwords']['by_region'][region] += text_stats['token_count_no_stopwords']
+        
+        # Update lexical diversity
+        if text_stats['lexical_diversity'] > 0:
+            stats['lexical_diversity']['by_region'][region].append(text_stats['lexical_diversity'])
+        
+        # Update temporal statistics if period exists
+        if period:
+            # Initialize period entries if they don't exist
+            if 'by_period' not in stats['document_counts']:
+                stats['document_counts']['by_period'] = {}
+            if period not in stats['document_counts']['by_period']:
+                stats['document_counts']['by_period'][period] = 0
+            
+            # Update period counts
+            stats['document_counts']['by_period'][period] += 1
+            
+            # Update regional-temporal matrix
+            if 'regional_temporal_matrix' not in stats:
+                stats['regional_temporal_matrix'] = {}
+            if region not in stats['regional_temporal_matrix']:
+                stats['regional_temporal_matrix'][region] = {}
+            if period not in stats['regional_temporal_matrix'][region]:
+                stats['regional_temporal_matrix'][region][period] = 0
+            stats['regional_temporal_matrix'][region][period] += 1
+            
+            # Update lexical diversity by period
+            if 'by_period' not in stats['lexical_diversity']:
+                stats['lexical_diversity']['by_period'] = {}
+            if period not in stats['lexical_diversity']['by_period']:
+                stats['lexical_diversity']['by_period'][period] = []
+            stats['lexical_diversity']['by_period'][period].append(text_stats['lexical_diversity'])
+        
+        # Update linguistic analysis stats
+        if 'linguistic_analysis' not in stats:
+            stats['linguistic_analysis'] = {
+                'morphological_complexity': {'by_region': {}, 'by_period': {}},
+                'formality_scores': {'by_region': {}, 'by_period': {}},
+                'average_word_length': {'by_region': {}, 'by_period': {}}
+            }
+        
+        # Update regional linguistic stats
+        for metric in ['morphological_complexity', 'formality_scores', 'average_word_length']:
+            if region not in stats['linguistic_analysis'][metric]['by_region']:
+                stats['linguistic_analysis'][metric]['by_region'][region] = []
+            stats['linguistic_analysis'][metric]['by_region'][region].append(
+                text_stats[metric.replace('_scores', '_score')]
+            )
+        
+        # Update temporal linguistic stats if period exists
+        if period:
+            for metric in ['morphological_complexity', 'formality_scores', 'average_word_length']:
+                if period not in stats['linguistic_analysis'][metric]['by_period']:
+                    stats['linguistic_analysis'][metric]['by_period'][period] = []
+                stats['linguistic_analysis'][metric]['by_period'][period].append(
+                    text_stats[metric.replace('_scores', '_score')]
+                )
+        
+        print(f"Successfully processed {pdf_file.name}")
+        try:
+            text = pymupdf4llm.LlamaMarkdownReader().load_data(str(pdf_file))
+            parallel_pairs = extract_parallel_texts(text)
+            
+            if parallel_pairs:
+                print(f"Found {len(parallel_pairs)} parallel text pairs")
+                region = pdf_file.parent.name
+                
+                # Ensure parallel_texts structure exists with dynamic categories
+                if 'parallel_texts' not in stats:
+                    stats['parallel_texts'] = {
+                        'total_pairs': 0,
+                        'by_region': defaultdict(list),
+                        'by_category': defaultdict(list),
+                        'samples': [],
+                        'metadata': defaultdict(dict)
+                    }
+                
+                # Process each pair
+                for original, translation in parallel_pairs:
+                    # Analyze the pair
+                    analysis = analyze_parallel_text_pair(original, translation)
+                    
+                    # Dynamically categorize based on analysis
+                    categories = analysis.get('categories', ['uncategorized'])
+                    
+                    # Update stats with flexible structure
+                    stats['parallel_texts']['total_pairs'] += 1
+                    
+                    # Store by region
+                    stats['parallel_texts']['by_region'][region].append({
+                        'original': original,
+                        'translation': translation,
+                        'analysis': analysis
+                    })
+                    
+                    # Store by category
+                    for category in categories:
+                        stats['parallel_texts']['by_category'][category].append({
+                            'original': original,
+                            'translation': translation,
+                            'analysis': analysis,
+                            'region': region
+                        })
+                    
+                    # Store representative samples
+                    if len(stats['parallel_texts']['samples']) < 10:
+                        stats['parallel_texts']['samples'].append({
+                            'region': region,
+                            'original': original,
+                            'translation': translation,
+                            'metrics': analysis['pair_metrics'],
+                            'categories': categories
+                        })
+        
+            return True
+        
+        except Exception as e:
+            print(f"Error processing parallel texts: {str(e)}")
+            traceback.print_exc()
+            return False
         
     except Exception as e:
         print(f"Error processing {pdf_file}: {str(e)}")
         traceback.print_exc()
         return False
+    
+    
+    
+def calculate_register_score(tokens):
+    """Calculate formality/register score based on linguistic markers."""
+    try:
+        print("\nCalculating register score...")
+        
+        # Use the already loaded REGISTER_MARKERS from data files
+        if not isinstance(REGISTER_MARKERS, dict):
+            print("Error: REGISTER_MARKERS not properly loaded")
+            return 0.0
+        
+        # Get formal and informal markers
+        formal_markers = set(REGISTER_MARKERS.get('formal_markers', []))
+        informal_markers = set(REGISTER_MARKERS.get('informal_markers', []))
+        
+        if not tokens:
+            return 0.0
+            
+        # Convert tokens to lowercase for comparison
+        tokens_lower = [token.lower() for token in tokens]
+        
+        # Count markers
+        formal_count = sum(1 for token in tokens_lower if token in formal_markers)
+        informal_count = sum(1 for token in tokens_lower if token in informal_markers)
+        
+        # Calculate score (-1 to 1, where 1 is most formal)
+        total_markers = formal_count + informal_count
+        if total_markers == 0:
+            return 0.0
+            
+        score = (formal_count - informal_count) / total_markers
+        print(f"Register score: {score:.3f} (formal: {formal_count}, informal: {informal_count})")
+        return score
+        
+    except Exception as e:
+        print(f"Error calculating register score: {str(e)}")
+        traceback.print_exc()  # This will help debug any issues
+        return 0.0
+    
 
 def normalize_text(text):
     """Normalize text using character mappings."""
-    # You'll need to define char_setup dictionary
+    print("\nNormalizing text...")
+    print(f"Input text length: {len(text)}")
     char_setup = {}  # Add your character mappings here
+    print(f"Using character mappings: {char_setup}")
+    
     for old, new in char_setup.items():
         text = text.replace(old, new)
+    
+    print(f"Normalized text length: {len(text)}")
     return text
-
 
 def is_poetry(text):
     """Detect if text is poetry based on common patterns."""
-    # Check for common poetry markers
+    print("\nChecking if text is poetry...")
     poetry_markers = [
         'Müfteilün', 'Fâilün', 'Mefâilün', 'Feilâtün',  # Common aruz meters
         '###',  # Header markers for verses
         '\n\n',  # Multiple line breaks between stanzas
     ]
+    print(f"Checking for poetry markers: {poetry_markers}")
     
-    return any(marker in text for marker in poetry_markers)
-
-
-import numpy as np
-import re
-from nltk.tokenize import word_tokenize
-
-def calculate_morphological_complexity(texts):
-    """Calculate morphological complexity of Ottoman Turkish texts."""
-    complexity_scores = []
+    for marker in poetry_markers:
+        if marker in text:
+            print(f"Found poetry marker: {marker}")
+            return True
     
-    for text in texts:
-        # Normalize text to lowercase and remove punctuation
-        normalized_text = re.sub(r'[^\w\s]', '', text.lower())
-        words = word_tokenize(normalized_text)
-        if not words:
-            continue
-            
-        # Count morphological markers per word
-        morpheme_counts = []
-        for word in words:
-            count = 0
-            for category, suffix_list in OTTOMAN_SUFFIXES.items():
-                for suffix in suffix_list:
-                    if word.endswith(suffix):
-                        count += 1
-            morpheme_counts.append(count)
-        
-        if morpheme_counts:
-            complexity_scores.append(np.mean(morpheme_counts))
-    
-    return np.mean(complexity_scores) if complexity_scores else 0.0
-
+    print("No poetry markers found")
+    return False
 
 def calculate_punctuation_density(texts):
     """Calculate punctuation density of texts."""
+    print("\nCalculating punctuation density...")
     punctuation_marks = set('.,!?;:""''()[]{}«»-–—')
+    print(f"Using punctuation marks: {punctuation_marks}")
     
     densities = []
-    for text in texts:
+    for i, text in enumerate(texts):
+        print(f"Processing text {i+1}/{len(texts)}")
         total_chars = len(text)
+        print(f"Total characters: {total_chars}")
+        
         if total_chars == 0:
+            print("Skipping empty text")
             continue
             
         punct_count = sum(1 for char in text if char in punctuation_marks)
-        densities.append(punct_count / total_chars)
+        density = punct_count / total_chars
+        print(f"Punctuation count: {punct_count}, Density: {density:.4f}")
+        densities.append(density)
     
-    return {
+    result = {
         'average_density': np.mean(densities) if densities else 0.0,
         'punctuation_distribution': Counter(char for text in texts 
                                          for char in text if char in punctuation_marks)
     }
-
-def calculate_register_score(words):
-    """Calculate formality register score."""
-    formal_markers = set(REGISTER_MARKERS['formal_markers'])
-    informal_markers = set(REGISTER_MARKERS['informal_markers'])
-    
-    # Count the occurrences of formal and informal markers
-    formal_count = sum(1 for word in words if word.lower() in formal_markers)
-    informal_count = sum(1 for word in words if word.lower() in informal_markers)
-    
-    total = formal_count + informal_count
-    if total == 0:
-        return 0.5  # Neutral score
-    
-    return formal_count / total
-
+    print(f"Final results: {result}")
+    return result
 
 def identify_formality_markers(words):
     """Identify markers of formality in text."""
+    print("\nIdentifying formality markers...")
     formality_markers = []
     
-    # Formal constructions
     formal_patterns = {
         'buyurmak': 1.0,
         'teşrif': 1.0,
@@ -850,59 +1148,97 @@ def identify_formality_markers(words):
         'bendeniz': 1.0,
         'zat-ı': 1.0
     }
+    print(f"Checking for patterns: {list(formal_patterns.keys())}")
     
-    # Check for formal patterns
-    for word in words:
+    for i, word in enumerate(words):
+        if i % 1000 == 0:  # Progress update every 1000 words
+            print(f"Processing word {i+1}/{len(words)}")
         word_lower = word.lower()
         for pattern, score in formal_patterns.items():
             if pattern in word_lower:
+                print(f"Found formal marker: {word} (pattern: {pattern}, score: {score})")
                 formality_markers.append((word, score))
     
+    print(f"Total formality markers found: {len(formality_markers)}")
     return formality_markers
 
 def identify_style_markers(texts, text_type):
     """Identify style markers in texts."""
+    print(f"\nIdentifying style markers for {text_type} texts...")
     markers_found = defaultdict(int)
     
-    for text in texts:
+    for i, text in enumerate(texts):
+        print(f"Processing text {i+1}/{len(texts)}")
         words = word_tokenize(text.lower())
+        print(f"Words tokenized: {len(words)}")
         
-        # Count style markers using the loaded JSON data
         for category, markers in STYLE_MARKERS.items():
+            print(f"Checking category: {category}")
             if isinstance(markers, dict):
                 for subcategory, submarkers in markers.items():
+                    print(f"  Checking subcategory: {subcategory}")
                     for marker in submarkers:
-                        markers_found[f"{category}_{subcategory}"] += sum(1 for word in words if marker in word.lower())
+                        count = sum(1 for word in words if marker in word.lower())
+                        if count > 0:
+                            print(f"    Found marker '{marker}': {count} times")
+                        markers_found[f"{category}_{subcategory}"] += count
             else:
                 for marker in markers:
-                    markers_found[category] += sum(1 for word in words if marker in word.lower())
+                    count = sum(1 for word in words if marker in word.lower())
+                    if count > 0:
+                        print(f"  Found marker '{marker}': {count} times")
+                    markers_found[category] += count
     
-    return dict(markers_found)
+    result = dict(markers_found)
+    print(f"Final style marker counts: {result}")
+    return result
+
 
 def analyze_text_features(texts, text_type):
     """Analyze linguistic features of texts."""
+    print(f"\nAnalyzing text features for type: {text_type}")
+    print(f"Number of texts to analyze: {len(texts)}")
+    
     try:
+        print("Tokenizing words...")
         words = [word for text in texts for word in word_tokenize(text.lower())]
+        print(f"Total words tokenized: {len(words)}")
+        
+        print("Calculating word frequencies...")
         word_counts = Counter(words)
+        print(f"Unique words found: {len(word_counts)}")
+        
+        print("Building vocabulary statistics...")
+        vocabulary_stats = {
+            'total_tokens': len(words),
+            'unique_tokens': len(set(words)),
+            'hapax_legomena': len([w for w, c in word_counts.items() if c == 1]),
+            'average_word_length': np.mean([len(w) for w in words]),
+            'most_frequent_words': dict(word_counts.most_common(20))
+        }
+        print(f"Vocabulary stats calculated: {vocabulary_stats}")
+        
+        print("Analyzing structural features...")
+        structural_stats = {
+            'average_sentence_length': np.mean([len(sent.split()) 
+                for text in texts for sent in text.split('.')]),
+            'morphological_complexity': calculate_morphological_complexity(texts),
+            'punctuation_density': calculate_punctuation_density(texts)
+        }
+        print(f"Structural analysis complete: {structural_stats}")
+        
+        print("Identifying style markers...")
+        style_markers = identify_style_markers(texts, text_type)
+        print(f"Style markers identified: {style_markers}")
         
         return {
-            'vocabulary': {
-                'total_tokens': len(words),
-                'unique_tokens': len(set(words)),
-                'hapax_legomena': len([w for w, c in word_counts.items() if c == 1]),
-                'average_word_length': np.mean([len(w) for w in words]),
-                'most_frequent_words': dict(word_counts.most_common(20))
-            },
-            'structural': {
-                'average_sentence_length': np.mean([len(sent.split()) 
-                    for text in texts for sent in text.split('.')]),
-                'morphological_complexity': calculate_morphological_complexity(texts),
-                'punctuation_density': calculate_punctuation_density(texts)
-            },
-            'style_markers': identify_style_markers(texts, text_type)
+            'vocabulary': vocabulary_stats,
+            'structural': structural_stats,
+            'style_markers': style_markers
         }
     except Exception as e:
         print(f"Error in text feature analysis: {e}")
+        print(f"Stack trace: {traceback.format_exc()}")
         return {
             'vocabulary': {'total_tokens': 0, 'unique_tokens': 0, 'hapax_legomena': 0,
                          'average_word_length': 0, 'most_frequent_words': {}},
@@ -910,26 +1246,59 @@ def analyze_text_features(texts, text_type):
                          'punctuation_density': 0},
             'style_markers': {}
         }
-    
 
 def analyze_parallel_texts(parallel_pairs):
     """Comprehensive analysis of parallel texts."""
-    analysis = {
-        'overall_statistics': {
-            'pair_count': len(parallel_pairs),
-            'average_similarity': np.mean([p['similarity_score'] for p in parallel_pairs]),
-            'text_types': {
-                'poetry': sum(1 for p in parallel_pairs if is_poetry(p['original'])),
-                'prose': sum(1 for p in parallel_pairs if not is_poetry(p['original']))
+    print(f"\nAnalyzing parallel texts...")
+    print(f"Number of parallel pairs: {len(parallel_pairs)}")
+    
+    try:
+        print("Calculating overall statistics...")
+        similarity_scores = [p['similarity_score'] for p in parallel_pairs]
+        print(f"Average similarity score: {np.mean(similarity_scores):.3f}")
+        
+        print("Identifying text types...")
+        poetry_count = sum(1 for p in parallel_pairs if is_poetry(p['original']))
+        prose_count = len(parallel_pairs) - poetry_count
+        print(f"Poetry pairs: {poetry_count}, Prose pairs: {prose_count}")
+        
+        print("Analyzing original texts...")
+        original_features = analyze_text_features([p['original'] for p in parallel_pairs], 'original')
+        
+        print("Analyzing modern translations...")
+        modern_features = analyze_text_features([p['translation'] for p in parallel_pairs], 'modern')
+        
+        analysis = {
+            'overall_statistics': {
+                'pair_count': len(parallel_pairs),
+                'average_similarity': np.mean(similarity_scores),
+                'text_types': {
+                    'poetry': poetry_count,
+                    'prose': prose_count
+                }
+            },
+            'linguistic_features': {
+                'original': original_features,
+                'modern': modern_features
             }
-        },
-        'linguistic_features': {
-            'original': analyze_text_features([p['original'] for p in parallel_pairs], 'original'),
-            'modern': analyze_text_features([p['translation'] for p in parallel_pairs], 'modern')
         }
-    }
-    return analysis
-
+        print("Analysis complete!")
+        return analysis
+        
+    except Exception as e:
+        print(f"Error in parallel text analysis: {e}")
+        print(f"Stack trace: {traceback.format_exc()}")
+        return {
+            'overall_statistics': {
+                'pair_count': 0,
+                'average_similarity': 0,
+                'text_types': {'poetry': 0, 'prose': 0}
+            },
+            'linguistic_features': {
+                'original': {},
+                'modern': {}
+            }
+        }
 # Add other helper functions (analyze_text_features, clean_markdown_chunks, etc.)
 
 def process_parallel_pair(original_pdf: pathlib.Path, translation_pdf: pathlib.Path, stats: dict) -> None:
@@ -953,7 +1322,7 @@ def process_parallel_pair(original_pdf: pathlib.Path, translation_pdf: pathlib.P
         traceback.print_exc()
 
 
-def process_directory(input_dir, parallel=False, semantic=False):
+def process_directory(input_dir, parallel=False, semantic=False, morphological=False):
     """Process directory of PDFs."""
     try:
         # Initialize stats with regular dictionaries instead of defaultdict
@@ -978,18 +1347,24 @@ def process_directory(input_dir, parallel=False, semantic=False):
             },
             'parallel_texts': {
                 'total_pairs': 0,
-                'by_region': {},
-                'samples': []  # Store actual parallel text samples
+                'by_region': defaultdict(list),
+                'samples': []
             }
         }
         
         # Process files
         processed_count = 0
+        processed_files = set()  # Keep track of processed files
+        
         for pdf_file in pathlib.Path(input_dir).rglob('*.pdf'):
+            if pdf_file in processed_files:  # Skip if already processed
+                continue
+                
             try:
                 print(f"\nProcessing: {pdf_file}")
                 result = pdf_to_markdown(pdf_file, stats, semantic=semantic)
                 if result:
+                    processed_files.add(pdf_file)  # Add to processed set
                     processed_count += 1
                     region = pdf_file.parent.name
                     
@@ -1018,33 +1393,156 @@ def process_directory(input_dir, parallel=False, semantic=False):
         print(f"Error in process_directory: {str(e)}")
         traceback.print_exc()
         return None
+    
 
 def convert_defaultdict_to_dict(obj):
     """Convert defaultdict to regular dict recursively."""
+    print(f"Converting object of type: {type(obj)}")
     if isinstance(obj, (defaultdict, dict)):
+        print(f"Converting dictionary with keys: {list(obj.keys())}")
         return {k: convert_defaultdict_to_dict(v) for k, v in dict(obj).items()}
     elif isinstance(obj, list):
+        print(f"Converting list of length: {len(obj)}")
         return [convert_defaultdict_to_dict(v) for v in obj]
+    print(f"Returning primitive value: {obj}")
     return obj
 
 def find_translation_pair(pdf_file):
     """Find translation pair for a given PDF file."""
-    # Get the stem of the filename (without extension)
+    print(f"\nSearching for translation pair for: {pdf_file}")
     stem = pdf_file.stem
+    print(f"File stem: {stem}")
     
     # Look for files with similar names in the same directory
+    print(f"Searching in directory: {pdf_file.parent}")
     for potential_pair in pdf_file.parent.glob('*.pdf'):
+        print(f"Checking potential pair: {potential_pair.name}")
         if potential_pair != pdf_file and (
             potential_pair.stem.startswith(stem) or 
             stem.startswith(potential_pair.stem) or
             'translation' in potential_pair.stem.lower() or
             'tercüme' in potential_pair.stem.lower()
         ):
+            print(f"Found matching pair: {potential_pair}")
             return potential_pair
+    print("No translation pair found")
     return None
+def process_document_stats(text, region, stats):
+    """Process and store comprehensive document statistics."""
+    try:
+        # Token statistics
+        tokens = word_tokenize(text)
+        tokens_no_stop = [t for t in tokens if t not in OTTOMAN_STOPWORDS]
+        
+        # Update token counts
+        stats['token_statistics']['by_region'][region] = len(tokens)
+        stats['token_statistics']['no_stopwords']['by_region'][region] = len(tokens_no_stop)
+        
+        # Morphological analysis
+        if 'morphological_complexity' not in stats:
+            stats['morphological_complexity'] = {'by_region': defaultdict(list)}
+        morph_score = calculate_morphological_complexity(text)
+        stats['morphological_complexity']['by_region'][region].append(morph_score)
+        
+        # Register and style markers
+        if 'style_markers' not in stats:
+            stats['style_markers'] = {'by_region': defaultdict(list)}
+        register_score = calculate_register_score(tokens)
+        style_markers = identify_style_markers(text)
+        stats['style_markers']['by_region'][region].extend(style_markers)
+        
+        # Semantic fields
+        if 'semantic_fields' not in stats:
+            stats['semantic_fields'] = {'by_region': defaultdict(set)}
+        semantic_fields = identify_semantic_fields(text)
+        stats['semantic_fields']['by_region'][region].update(semantic_fields)
+        
+        print(f"\nDocument Statistics for {region}:")
+        print(f"- Tokens: {len(tokens)}")
+        print(f"- Tokens (no stopwords): {len(tokens_no_stop)}")
+        print(f"- Morphological complexity: {morph_score:.3f}")
+        print(f"- Register score: {register_score:.3f}")
+        print(f"- Semantic fields: {len(semantic_fields)}")
+        
+    except Exception as e:
+        print(f"Error processing document stats: {e}")
+        traceback.print_exc()
+
+def identify_style_markers(text):
+    """Identify style markers in text using REGISTER_MARKERS."""
+    markers = []
+    words = word_tokenize(text.lower())
+    
+    for word in words:
+        # Check formal markers
+        if word in REGISTER_MARKERS.get('formal_markers', []):
+            markers.append(('formal', word))
+        
+        # Check informal markers
+        if word in REGISTER_MARKERS.get('informal_markers', []):
+            markers.append(('informal', word))
+            
+        # Check greetings
+        for formality in ['formal', 'informal']:
+            if word in REGISTER_MARKERS.get('greetings', {}).get(formality, []):
+                markers.append((f'greeting_{formality}', word))
+                
+        # Check farewells
+        for formality in ['formal', 'informal']:
+            if word in REGISTER_MARKERS.get('farewells', {}).get(formality, []):
+                markers.append((f'farewell_{formality}', word))
+    
+    return markers
+
+def identify_semantic_fields(text):
+    """Identify semantic fields in text using SEMANTIC_FIELDS."""
+    fields = set()
+    words = word_tokenize(text.lower())
+    
+    for word in words:
+        for field, terms in SEMANTIC_FIELDS.items():
+            if word in terms:
+                fields.add(field)
+    
+    return fields
+
+def create_output_structure(pdf_file: pathlib.Path) -> pathlib.Path:
+    """Create output directory structure for processed files."""
+    print(f"\nCreating output structure for: {pdf_file}")
+    try:
+        # Create base output directory parallel to PDF directory
+        base_dir = pdf_file.parent.parent / "md_out"
+        
+        # Create region-based subdirectory structure
+        region_dir = base_dir / pdf_file.parent.name
+        
+        # Create specific output directory for this file
+        output_dir = region_dir / pdf_file.stem
+        
+        # Create all directories if they don't exist
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        print(f"Created output directory: {output_dir}")
+        return output_dir
+        
+    except Exception as e:
+        print(f"Error creating output structure: {str(e)}")
+        traceback.print_exc()
+        raise
 
 if __name__ == "__main__":
     import argparse
+
+    initialize_nltk()
+    
+    # Define output_dir before using it
+    base_output_path = pathlib.Path(r"C:\Users\Administrator\Desktop\cook\Ottoman-NLP\corpus-texts")
+    output_dir = base_output_path / "md_out"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    print("\nGenerating lexical network visualization...")
+    network_viz = NetworkVisualizer(str(output_dir / "enhanced_corpus_stats.yaml"))
+    network_viz.generate_network_analysis(output_dir=str(output_dir / "network_analysis"))
     
     description = """
     Thank you for using OttoMiner!
@@ -1056,7 +1554,7 @@ if __name__ == "__main__":
     - Visualization generation
 
     Example usage:
-    python pdf_to_md.py /path/to/pdfs -p -s -g -m
+    python pdf_to_md.py /path/to/pdfs -p -s -m -g
     """
     
     epilog = """
@@ -1103,37 +1601,34 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     
-    # Only initialize NLTK if we're actually processing files
-    if len(sys.argv) > 1 and not sys.argv[1] in ['-h', '--help']:
-        initialize_nltk()
+    try:
+        base_output_path = pathlib.Path(r"C:\Users\Administrator\Desktop\cook\Ottoman-NLP\corpus-texts")
+        output_dir = base_output_path / "md_out"
+        output_dir.mkdir(parents=True, exist_ok=True)
         
-        try:
-            base_output_path = pathlib.Path(r"C:\Users\Administrator\Desktop\cook\Ottoman-NLP\corpus-texts")
-            output_dir = base_output_path / "md_out"
-            output_dir.mkdir(parents=True, exist_ok=True)
+        stats = process_directory(
+            args.input_directory,
+            parallel=args.parallel,
+            semantic=args.semantic,
+            morphological=args.morphological
+        )
+        
+        create_enhanced_corpus_stats(stats, base_output_path)
+        
+        print("\nOutput saved in:", output_dir)
+        if args.morphological:
+            print("\nMorphological Analysis Results:")
+            for region, complexity in stats.get('morphological_analysis', {}).items():
+                print(f"{region}: {np.mean(complexity):.3f}")
+        
+        if args.graph:
+            from visualize import CorpusVisualizer
+            visualizer = CorpusVisualizer(str(output_dir / "enhanced_corpus_stats.yaml"))
+            plots_dir = output_dir / "visualization_plots"
+            visualizer.generate_all_plots(output_dir=str(plots_dir))
+            print(f"\nVisualization graphs generated in {plots_dir}")
             
-            stats = process_directory(
-                args.input_directory,
-                parallel=args.parallel,
-                semantic=args.semantic,
-                morphological=args.morphological
-            )
-            
-            create_enhanced_corpus_stats(stats, base_output_path)
-            
-            print("\nOutput saved in:", output_dir)
-            if args.morphological:
-                print("\nMorphological Analysis Results:")
-                for region, complexity in stats.get('morphological_analysis', {}).items():
-                    print(f"{region}: {np.mean(complexity):.3f}")
-            
-            if args.graph:
-                from visualize import CorpusVisualizer
-                visualizer = CorpusVisualizer(str(output_dir / "enhanced_corpus_stats.yaml"))
-                plots_dir = output_dir / "visualization_plots"
-                visualizer.generate_all_plots(output_dir=str(plots_dir))
-                print(f"\nVisualization graphs generated in {plots_dir}")
-                
-        except Exception as e:
-            print(f"\nError during processing: {str(e)}")
-            traceback.print_exc()
+    except Exception as e:
+        print(f"\nError during processing: {str(e)}")
+        traceback.print_exc()
+
