@@ -1,0 +1,44 @@
+{
+  "formality": {
+    "formal_markers": [
+      "hazret",
+      "han\u0131mefendi",
+      "beyefendi",
+      "test",
+      "document",
+      "pa\u015fa",
+      "efendi"
+    ],
+    "informal_markers": [
+      "abi",
+      "karde\u015f",
+      "dostum",
+      "yahu",
+      "be"
+    ]
+  },
+  "semantics": {
+    "religious": [
+      "allah",
+      "bismillah"
+    ],
+    "cultural": [
+      "hamam",
+      "kahve"
+    ],
+    "political": [
+      "padi\u015fah",
+      "vezir"
+    ],
+    "economic": [
+      "ak\u00e7e",
+      "para"
+    ]
+  },
+  "test_category": {
+    "test_subcategory": [
+      "test_marker1",
+      "test_marker2"
+    ]
+  }
+}
