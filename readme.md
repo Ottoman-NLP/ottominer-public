@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="items/readme_logo.png" alt="Ottoman NLP Toolkit Logo" width="200" style="margin-right: 20px;"/>
-  <img src="items/boun.png" alt="Boğaziçi University Logo" width="200"/>
+  <img src="items/readme_logo.png" alt="Ottoman NLP Toolkit Logo" width="225" style="margin-right: 20px;"/>
+  <img src="items/boun.png" alt="Boğaziçi University Logo" width="225" style="margin-left: 20px;"/>
 </p>
 <p align="center">
   <em>Ottoman NLP</em>
@@ -41,9 +41,6 @@ pip install -e .
 Begin utilizing Ottoman Miner with the following Python script:
 
 ``` 
-python.exe
-
-
 from ottominer.core import Environment
 from ottominer.analyzer import semantic
 
@@ -55,6 +52,7 @@ results = analyzer.process("WILL/BE/UPDATED.pdf")
 
 ## Project Structure
 
+```
 ottominer/
 ├── analyzer/    # Components for Ottoman text analysis
 ├── cli/         # Command-line interface tools
@@ -62,6 +60,7 @@ ottominer/
 ├── extractors/  # Document extraction utilities
 ├── utils/       # Auxiliary utility functions
 └── tests/       # Comprehensive test suite
+```
 
 ## Configuration
 
