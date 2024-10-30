@@ -10,7 +10,7 @@ setup(
     name="ottominer",
     version="0.1.0",
     author="Fatih Burak Karagöz",
-    author_email="your.email@example.com",
+    author_email="rekurrenz@pm.me",
     description="A text mining toolkit for Ottoman archival documents",
     long_description=long_description,
     long_description_content_type="text/markdown",
