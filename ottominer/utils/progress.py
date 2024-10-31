@@ -1,196 +1,91 @@
+from rich.progress import Progress, SpinnerColumn, Task
 from rich.console import Console
-from rich.live import Live
-from rich.panel import Panel
-from rich.layout import Layout
 from rich.table import Table
-from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn, TimeRemainingColumn
-from datetime import datetime
+from contextlib import contextmanager
+from typing import Dict, Optional
+import logging
 import time
-import threading
-from typing import Optional, Dict, Any
+
+logger = logging.getLogger(__name__)
 
 class ProgressTracker:
-    """Enhanced terminal UI progress tracking for Ottoman Miner"""
+    """Singleton progress tracker to avoid multiple live displays."""
+    _instance = None
     
-    def __init__(self):
-        self.console = Console()
-        self.done = False
-        self.current_operation = ""
-        self.current_file = ""
-        self.total_files = 0
-        self.processed_files = 0
-        self.start_time = None
-        self.stats = {}
-        self._thread = None
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance._progress = None
+            cls._instance._console = Console()
+            cls._instance._task_history = {}
+            cls._instance._active = False
+        return cls._instance
+
+    def force_stop(self):
+        """Force stop any active progress display."""
+        if self._progress and self._active:
+            try:
+                # Store task info before stopping
+                for task_id in self._progress.task_ids:
+                    task = self._progress.tasks[task_id]
+                    self._task_history[task_id] = {
+                        'description': task.description,
+                        'completed': task.completed,
+                        'total': task.total
+                    }
+                self._progress.stop()
+            except Exception as e:
+                logger.warning(f"Error stopping progress: {e}")
+            finally:
+                self._progress = None
+                self._active = False
+
+    def __enter__(self):
+        """Support context manager protocol."""
+        self.force_stop()  # Stop any existing progress
+        time.sleep(0.1)  # Give time for cleanup
         
-        # Initialize progress bars
-        self.progress = Progress(
+        self._progress = Progress(
             SpinnerColumn(),
-            TextColumn("[bold blue]{task.description}"),
-            BarColumn(bar_width=40),
-            TextColumn("[progress.percentage]{task.percentage:>3.1f}%"),
-            TimeRemainingColumn(),
-            expand=True
+            *Progress.get_default_columns(),
+            console=self._console,
+            transient=True
         )
-        
-        self.file_progress = Progress(
-            TextColumn("[bold yellow]{task.description}"),
-            BarColumn(bar_width=40),
-            TextColumn("{task.completed}/{task.total}"),
-            expand=True
-        )
+        self._progress.start()
+        self._active = True
+        return self._progress
 
-    def _create_layout(self) -> Layout:
-        """Create the terminal UI layout"""
-        layout = Layout()
-        
-        layout.split(
-            Layout(name="header", size=3),
-            Layout(name="main"),
-            Layout(name="footer", size=3)
-        )
-        
-        layout["main"].split_row(
-            Layout(name="progress", ratio=2),
-            Layout(name="stats", ratio=1)
-        )
-        
-        return layout
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Cleanup on context exit."""
+        self.force_stop()
 
-    def _generate_stats_table(self) -> Table:
-        """Generate statistics table"""
-        table = Table(show_header=False, expand=True)
-        table.add_column("Metric")
-        table.add_column("Value")
-        
-        for key, value in self.stats.items():
-            table.add_row(f"[cyan]{key}[/cyan]", f"[yellow]{value}[/yellow]")
-        
+    def create_status_table(self) -> Table:
+        """Create a rich table showing task status."""
+        table = Table(title="Task Status")
+        table.add_column("Task ID")
+        table.add_column("Description")
+        table.add_column("Progress")
+        table.add_column("Status")
+
+        for task_id, info in self._task_history.items():
+            progress = f"{info['completed']}/{info['total']}"
+            status = "Complete" if info['completed'] >= info['total'] else "In Progress"
+            table.add_row(
+                str(task_id),
+                info['description'],
+                progress,
+                status
+            )
+
         return table
 
-    def _update_display(self, live: Live, layout: Layout, task_id: int, file_task_id: int):
-        """Update the terminal UI display"""
-        while not self.done:
-            # Update header
-            layout["header"].update(
-                Panel(
-                    f"[bold white]Ottoman Miner - {self.current_operation}[/bold white]",
-                    style="blue"
-                )
-            )
-            
-            # Update progress section
-            progress_layout = Layout()
-            progress_layout.update(
-                Panel(
-                    self.progress,
-                    title="Overall Progress",
-                    border_style="blue"
-                )
-            )
-            
-            file_layout = Layout()
-            file_layout.update(
-                Panel(
-                    self.file_progress,
-                    title="Current File",
-                    border_style="yellow"
-                )
-            )
-            
-            layout["progress"].update(progress_layout)
-            
-            # Update stats section
-            layout["stats"].update(
-                Panel(
-                    self._generate_stats_table(),
-                    title="Statistics",
-                    border_style="cyan"
-                )
-            )
-            
-            # Update footer
-            elapsed = time.time() - self.start_time if self.start_time else 0
-            layout["footer"].update(
-                Panel(
-                    f"Elapsed: {elapsed:.1f}s | Memory: {self.stats.get('Memory', 'N/A')}",
-                    style="blue"
-                )
-            )
-            
-            # Update progress
-            self.progress.update(task_id, completed=self.processed_files)
-            if self.current_file:
-                self.file_progress.update(file_task_id, description=self.current_file)
-            
-            time.sleep(0.1)
+    def get_task(self, task_id: int) -> Optional[Task]:
+        """Get task by ID safely."""
+        if self._progress and task_id in self._progress.tasks:
+            return self._progress.tasks[task_id]
+        return None
 
-    def start(self, operation: str, total_files: int):
-        """Start tracking progress with terminal UI"""
-        self.done = False
-        self.current_operation = operation
-        self.total_files = total_files
-        self.processed_files = 0
-        self.start_time = time.time()
-        self.stats = {}
-        
-        layout = self._create_layout()
-        
-        # Create main progress task
-        task_id = self.progress.add_task(
-            operation,
-            total=total_files
-        )
-        
-        # Create file progress task
-        file_task_id = self.file_progress.add_task(
-            "Current file",
-            total=100
-        )
-        
-        # Start live display
-        with Live(layout, refresh_per_second=10, screen=True):
-            self._thread = threading.Thread(
-                target=self._update_display,
-                args=(Live, layout, task_id, file_task_id)
-            )
-            self._thread.daemon = True
-            self._thread.start()
-    
-    def update(self, file_name: str, stats: Optional[Dict[str, Any]] = None):
-        """Update progress with current file and statistics"""
-        self.current_file = file_name
-        self.processed_files += 1
-        if stats:
-            self.stats = stats
-    
-    def stop(self):
-        """Stop progress tracking"""
-        self.done = True
-        if self._thread:
-            self._thread.join()
-            self._thread = None
-        self.console.print("\n[bold green]Operation completed successfully![/bold green]")
-
-# Global instance
-progress = ProgressTracker()
-
-# Usage example
-if __name__ == "__main__":
-    # Simulate PDF processing
-    files = [f"document_{i}.pdf" for i in range(5)]
-    
-    progress.start("PDF Extraction", len(files))
-    
-    for file in files:
-        time.sleep(2)  # Simulate processing
-        progress.update(file, {
-            "Pages Processed": "10/10",
-            "Text Extraction": "100%",
-            "Memory Usage": "124MB",
-            "OCR Quality": "High",
-            "Errors": "None",
-            "Processing Speed": "2.1 pages/s"
-        })
-    
-    progress.stop()
+    def update_task(self, task_id: int, advance: int = 1):
+        """Update task progress safely."""
+        if self._progress:
+            self._progress.update(task_id, advance=advance)
