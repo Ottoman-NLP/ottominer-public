@@ -37,8 +37,8 @@
   },
   "test_category": {
     "test_subcategory": [
-      "test_marker1",
-      "test_marker2"
+      "test_marker2",
+      "test_marker1"
     ]
   }
 }

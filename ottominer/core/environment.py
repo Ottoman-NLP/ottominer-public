@@ -13,6 +13,8 @@ class Environment:
         self.CORE_DIR = self.PROJECT_ROOT / 'core'
         self.FDATA_DIR = self.PROJECT_ROOT / 'fdata'
         self.OUTPUT_DIR = self.PROJECT_ROOT / 'output'
+        self.CACHE_DIR = self.PROJECT_ROOT / 'cache'
+        self.LOG_DIR = self.PROJECT_ROOT / 'logs'
         
         # CLI specific directories
         self.COMPLETION_DIR = Path.home() / '.ottominer' / 'completion'
@@ -27,7 +29,9 @@ class Environment:
             self.FDATA_DIR,
             self.OUTPUT_DIR,
             self.COMPLETION_DIR,
-            self.CONFIG_DIR
+            self.CONFIG_DIR,
+            self.CACHE_DIR,
+            self.LOG_DIR
         ]:
             directory.mkdir(parents=True, exist_ok=True)
     

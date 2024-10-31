@@ -178,3 +178,756 @@
 2024-10-30 21:12:05,533 - ottominer - INFO - Available disk space: 100.00 GB
 2024-10-30 21:12:05,533 - ottominer - INFO - Available disk space: 100.00 GB
 2024-10-30 21:12:05,533 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:05:31,192 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:05:31,193 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:05:31,242 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpv1t0tu_a\test_0.pdf
+2024-10-31 09:05:31,242 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmpv1t0tu_a\test_0.pdf: 'ProgressTracker' object has no attribute 'task'
+2024-10-31 09:05:31,242 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpv1t0tu_a\test_1.pdf
+2024-10-31 09:05:31,242 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmpv1t0tu_a\test_1.pdf: 'ProgressTracker' object has no attribute 'task'
+2024-10-31 09:05:31,242 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpv1t0tu_a\test_2.pdf
+2024-10-31 09:05:31,252 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmpv1t0tu_a\test_2.pdf: 'ProgressTracker' object has no attribute 'task'
+2024-10-31 09:07:09,066 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:07:09,066 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:07:09,067 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:07:09,067 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:07:09,068 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmplvwnoft8\test.pdf
+2024-10-31 09:07:09,068 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmplvwnoft8\test.pdf
+2024-10-31 09:07:09,068 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmplvwnoft8\test.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,068 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmplvwnoft8\test.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,069 - ottominer - ERROR - Error in extract: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,108 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:07:09,108 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:07:09,114 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:07:09,114 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:07:09,114 - ottominer - ERROR - Error in extract: file does not exist: nonexistent.pdf
+2024-10-31 09:07:09,120 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:07:09,120 - ottominer - INFO - Available memory: 42.03 GB
+2024-10-31 09:07:09,120 - ottominer - INFO - Available disk space: 146.90 GB
+2024-10-31 09:07:09,121 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_0.pdf
+2024-10-31 09:07:09,121 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_0.pdf
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_0.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_1.pdf
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_0.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_1.pdf
+2024-10-31 09:07:09,123 - ottominer - ERROR - Error in extract: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_1.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_1.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,123 - ottominer - ERROR - Error in extract: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_2.pdf
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_2.pdf
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_2.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,123 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\ADMINI~1\AppData\Local\Temp\tmpn2akg0qx\test_2.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,123 - ottominer - ERROR - Error in extract: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,123 - ottominer - ERROR - Error in batch_extract: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,134 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:07:09,134 - ottominer - INFO - Available memory: 42.03 GB
+2024-10-31 09:07:09,134 - ottominer - INFO - Available disk space: 146.90 GB
+2024-10-31 09:07:09,149 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:07:09,149 - ottominer - INFO - Available memory: 42.03 GB
+2024-10-31 09:07:09,149 - ottominer - INFO - Available disk space: 146.90 GB
+2024-10-31 09:07:09,149 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_0.pdf
+2024-10-31 09:07:09,149 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_0.pdf
+2024-10-31 09:07:09,150 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_1.pdf
+2024-10-31 09:07:09,150 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_0.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,150 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_1.pdf
+2024-10-31 09:07:09,150 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_0.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,150 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_1.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,150 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_2.pdf
+2024-10-31 09:07:09,150 - ottominer - ERROR - Error in extract: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,150 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_1.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,150 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_2.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,150 - ottominer - ERROR - Error in extract: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,150 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-0\test_integration0\test_2.pdf: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,150 - ottominer - ERROR - Error in extract: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,150 - ottominer - ERROR - Error in batch_extract: Progress.open() missing 1 required positional argument: 'file'
+2024-10-31 09:07:09,177 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:07:09,178 - ottominer - INFO - Available memory: 42.03 GB
+2024-10-31 09:07:09,178 - ottominer - INFO - Available disk space: 146.90 GB
+2024-10-31 09:07:09,197 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:07:09,197 - ottominer - INFO - Available memory: 42.03 GB
+2024-10-31 09:07:09,197 - ottominer - INFO - Available disk space: 146.90 GB
+2024-10-31 09:07:09,304 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:07:09,304 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:07:09,304 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:08:02,494 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:08:02,494 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:08:02,494 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:08:02,494 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:08:02,497 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp4auieduk\test.pdf
+2024-10-31 09:08:02,497 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp4auieduk\test.pdf
+2024-10-31 09:08:02,498 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:08:02,498 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:08:02,501 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:08:02,501 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:08:02,502 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:08:02,502 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:08:02,502 - ottominer - ERROR - Error in extract: file does not exist: nonexistent.pdf
+2024-10-31 09:08:02,509 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:08:02,509 - ottominer - INFO - Available memory: 42.02 GB
+2024-10-31 09:08:02,509 - ottominer - INFO - Available disk space: 146.90 GB
+2024-10-31 09:08:02,511 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp5m17gdzr\test_0.pdf
+2024-10-31 09:08:02,511 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp5m17gdzr\test_1.pdf
+2024-10-31 09:08:02,511 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp5m17gdzr\test_0.pdf
+2024-10-31 09:08:02,511 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp5m17gdzr\test_1.pdf
+2024-10-31 09:08:02,513 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_0.md
+2024-10-31 09:08:02,514 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_1.md
+2024-10-31 09:08:02,513 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_0.md
+2024-10-31 09:08:02,514 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_1.md
+2024-10-31 09:08:02,523 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp5m17gdzr\test_2.pdf
+2024-10-31 09:08:02,523 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp5m17gdzr\test_2.pdf
+2024-10-31 09:08:02,526 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_2.md
+2024-10-31 09:08:02,526 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_2.md
+2024-10-31 09:08:02,533 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:08:02,534 - ottominer - INFO - Available memory: 42.02 GB
+2024-10-31 09:08:02,534 - ottominer - INFO - Available disk space: 146.90 GB
+2024-10-31 09:08:02,549 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:08:02,549 - ottominer - INFO - Available memory: 42.02 GB
+2024-10-31 09:08:02,549 - ottominer - INFO - Available disk space: 146.90 GB
+2024-10-31 09:08:02,550 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-1\test_integration0\test_0.pdf
+2024-10-31 09:08:02,550 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-1\test_integration0\test_0.pdf
+2024-10-31 09:08:02,550 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-1\test_integration0\test_1.pdf
+2024-10-31 09:08:02,551 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-1\test_integration0\test_2.pdf
+2024-10-31 09:08:02,550 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-1\test_integration0\test_1.pdf
+2024-10-31 09:08:02,551 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-1\test_integration0\test_2.pdf
+2024-10-31 09:08:02,580 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-1\test_integration0\test_0.pdf: Failed to open file 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-1\\test_integration0\\test_0.pdf'.
+2024-10-31 09:08:02,580 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-1\test_integration0\test_0.pdf: Failed to open file 'C:\\Users\\Administrator\\AppData\\Local\\Temp\\pytest-of-Administrator\\pytest-1\\test_integration0\\test_0.pdf'.
+2024-10-31 09:10:11,364 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:10:11,364 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:10:11,365 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:10:11,365 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:10:11,367 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp8c4l16eg\test.pdf
+2024-10-31 09:10:11,367 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp8c4l16eg\test.pdf
+2024-10-31 09:10:11,371 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:10:11,371 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:10:11,373 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:10:11,373 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:10:11,377 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:10:11,377 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:10:11,377 - ottominer - ERROR - Error in extract: file does not exist: nonexistent.pdf
+2024-10-31 09:10:11,384 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:10:11,384 - ottominer - INFO - Available memory: 42.02 GB
+2024-10-31 09:10:11,384 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:10:11,385 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmprp810bb6\test_0.pdf
+2024-10-31 09:10:11,385 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmprp810bb6\test_0.pdf
+2024-10-31 09:10:11,385 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmprp810bb6\test_1.pdf
+2024-10-31 09:10:11,385 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmprp810bb6\test_1.pdf
+2024-10-31 09:10:11,388 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_0.md
+2024-10-31 09:10:11,388 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_1.md
+2024-10-31 09:10:11,388 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_0.md
+2024-10-31 09:10:11,388 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_1.md
+2024-10-31 09:10:11,388 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmprp810bb6\test_2.pdf
+2024-10-31 09:10:11,388 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmprp810bb6\test_2.pdf
+2024-10-31 09:10:11,391 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_2.md
+2024-10-31 09:10:11,391 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_2.md
+2024-10-31 09:10:11,398 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:10:11,398 - ottominer - INFO - Available memory: 42.02 GB
+2024-10-31 09:10:11,398 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:10:11,412 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:10:11,412 - ottominer - INFO - Available memory: 42.02 GB
+2024-10-31 09:10:11,412 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:10:11,413 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-2\test_integration0\test_0.pdf
+2024-10-31 09:10:11,413 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-2\test_integration0\test_1.pdf
+2024-10-31 09:10:11,413 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-2\test_integration0\test_0.pdf
+2024-10-31 09:10:11,413 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-2\test_integration0\test_1.pdf
+2024-10-31 09:10:11,453 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\ADMINI~1\AppData\Local\Temp\tmpg68jpv2b\test_1.md
+2024-10-31 09:10:11,453 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\ADMINI~1\AppData\Local\Temp\tmpg68jpv2b\test_0.md
+2024-10-31 09:10:11,453 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\ADMINI~1\AppData\Local\Temp\tmpg68jpv2b\test_1.md
+2024-10-31 09:10:11,453 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\ADMINI~1\AppData\Local\Temp\tmpg68jpv2b\test_0.md
+2024-10-31 09:10:11,455 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-2\test_integration0\test_2.pdf
+2024-10-31 09:10:11,455 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-2\test_integration0\test_2.pdf
+2024-10-31 09:10:11,464 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\ADMINI~1\AppData\Local\Temp\tmpg68jpv2b\test_2.md
+2024-10-31 09:10:11,464 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\ADMINI~1\AppData\Local\Temp\tmpg68jpv2b\test_2.md
+2024-10-31 09:10:11,562 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:10:11,562 - ottominer - INFO - Available memory: 42.00 GB
+2024-10-31 09:10:11,562 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:10:11,581 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:10:11,581 - ottominer - INFO - Available memory: 42.00 GB
+2024-10-31 09:10:11,581 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:10:11,626 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:10:11,626 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:10:11,626 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:14:46,539 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:14:46,539 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:14:46,540 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:14:46,540 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:14:46,543 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpavxb71ck\test.pdf
+2024-10-31 09:14:46,543 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpavxb71ck\test.pdf
+2024-10-31 09:14:46,546 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:14:46,546 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:14:46,548 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:14:46,548 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:14:46,549 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:14:46,549 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:14:46,549 - ottominer - ERROR - Error in extract: file does not exist: nonexistent.pdf
+2024-10-31 09:14:46,563 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:14:46,563 - ottominer - INFO - Available memory: 41.56 GB
+2024-10-31 09:14:46,563 - ottominer - INFO - Available disk space: 146.88 GB
+2024-10-31 09:14:46,565 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpsqw8dfuy\test_0.pdf
+2024-10-31 09:14:46,565 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpsqw8dfuy\test_0.pdf
+2024-10-31 09:14:46,565 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpsqw8dfuy\test_1.pdf
+2024-10-31 09:14:46,565 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpsqw8dfuy\test_1.pdf
+2024-10-31 09:14:46,569 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_0.md
+2024-10-31 09:14:46,569 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_0.md
+2024-10-31 09:14:46,569 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_1.md
+2024-10-31 09:14:46,574 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpsqw8dfuy\test_2.pdf
+2024-10-31 09:14:46,574 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmpsqw8dfuy\test_2.pdf
+2024-10-31 09:14:46,577 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_2.md
+2024-10-31 09:14:46,577 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_2.md
+2024-10-31 09:14:46,586 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:14:46,586 - ottominer - INFO - Available memory: 41.55 GB
+2024-10-31 09:14:46,586 - ottominer - INFO - Available disk space: 146.88 GB
+2024-10-31 09:14:46,606 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:14:46,607 - ottominer - INFO - Available memory: 41.55 GB
+2024-10-31 09:14:46,607 - ottominer - INFO - Available disk space: 146.88 GB
+2024-10-31 09:14:46,623 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:14:46,624 - ottominer - INFO - Available memory: 41.55 GB
+2024-10-31 09:14:46,624 - ottominer - INFO - Available disk space: 146.88 GB
+2024-10-31 09:14:46,707 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:14:46,707 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:14:46,707 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:15:32,028 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:15:32,028 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:15:32,029 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:15:32,029 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public
+2024-10-31 09:15:32,032 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp364rykko\test.pdf
+2024-10-31 09:15:32,032 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp364rykko\test.pdf
+2024-10-31 09:15:32,037 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:15:32,037 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:15:32,039 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:15:32,039 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test.md
+2024-10-31 09:15:32,041 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:15:32,041 - ottominer.extractors.base - ERROR - file does not exist: nonexistent.pdf
+2024-10-31 09:15:32,041 - ottominer - ERROR - Error in extract: file does not exist: nonexistent.pdf
+2024-10-31 09:15:32,048 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:15:32,048 - ottominer - INFO - Available memory: 41.65 GB
+2024-10-31 09:15:32,048 - ottominer - INFO - Available disk space: 146.88 GB
+2024-10-31 09:15:32,049 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp73sbevkf\test_0.pdf
+2024-10-31 09:15:32,049 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp73sbevkf\test_0.pdf
+2024-10-31 09:15:32,050 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp73sbevkf\test_1.pdf
+2024-10-31 09:15:32,050 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp73sbevkf\test_1.pdf
+2024-10-31 09:15:32,053 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_0.md
+2024-10-31 09:15:32,053 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_1.md
+2024-10-31 09:15:32,053 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_0.md
+2024-10-31 09:15:32,053 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_1.md
+2024-10-31 09:15:32,053 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp73sbevkf\test_2.pdf
+2024-10-31 09:15:32,053 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\ADMINI~1\AppData\Local\Temp\tmp73sbevkf\test_2.pdf
+2024-10-31 09:15:32,056 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_2.md
+2024-10-31 09:15:32,056 - ottominer.extractors.pdf - INFO - Saved output to: test_output\test_2.md
+2024-10-31 09:15:32,066 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:15:32,066 - ottominer - INFO - Available memory: 41.65 GB
+2024-10-31 09:15:32,066 - ottominer - INFO - Available disk space: 146.88 GB
+2024-10-31 09:15:32,085 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:15:32,085 - ottominer - INFO - Available memory: 41.65 GB
+2024-10-31 09:15:32,085 - ottominer - INFO - Available disk space: 146.88 GB
+2024-10-31 09:15:32,099 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:15:32,099 - ottominer - INFO - Available memory: 41.65 GB
+2024-10-31 09:15:32,099 - ottominer - INFO - Available disk space: 146.88 GB
+2024-10-31 09:15:32,170 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:15:32,170 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:15:32,170 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:17:42,154 - ottominer.extractors.base - ERROR - file does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:17:42,154 - ottominer.extractors.base - ERROR - file does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:17:42,203 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_validate_file_not_file0
+2024-10-31 09:17:42,203 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_validate_file_not_file0
+2024-10-31 09:17:42,206 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_single_pdf0\test.pdf
+2024-10-31 09:17:42,206 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_single_pdf0\test.pdf
+2024-10-31 09:17:42,220 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:17:42,220 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:17:42,226 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:17:42,226 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:17:42,230 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:17:42,230 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:17:42,231 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:17:42,231 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:17:42,231 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:17:42,240 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:17:42,240 - ottominer - INFO - Available memory: 41.67 GB
+2024-10-31 09:17:42,240 - ottominer - INFO - Available disk space: 146.89 GB
+2024-10-31 09:17:42,241 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_batch_extract0\test_0.pdf
+2024-10-31 09:17:42,241 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_batch_extract0\test_1.pdf
+2024-10-31 09:17:42,241 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_batch_extract0\test_0.pdf
+2024-10-31 09:17:42,241 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_batch_extract0\test_2.pdf
+2024-10-31 09:17:42,241 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_batch_extract0\test_1.pdf
+2024-10-31 09:17:42,241 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_batch_extract0\test_2.pdf
+2024-10-31 09:17:42,257 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_1.md
+2024-10-31 09:17:42,257 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_2.md
+2024-10-31 09:17:42,257 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_1.md
+2024-10-31 09:17:42,257 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_2.md
+2024-10-31 09:17:42,257 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_0.md
+2024-10-31 09:17:42,257 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_0.md
+2024-10-31 09:17:42,266 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:17:42,267 - ottominer - INFO - Available memory: 41.67 GB
+2024-10-31 09:17:42,267 - ottominer - INFO - Available disk space: 146.89 GB
+2024-10-31 09:17:42,270 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_integration0\test_0.pdf
+2024-10-31 09:17:42,270 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_integration0\test_0.pdf
+2024-10-31 09:17:42,281 - ottominer.extractors.pdf - INFO - Saved output to: output\test_0.md
+2024-10-31 09:17:42,281 - ottominer.extractors.pdf - INFO - Saved output to: output\test_0.md
+2024-10-31 09:17:42,288 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:17:42,288 - ottominer - INFO - Available memory: 41.67 GB
+2024-10-31 09:17:42,288 - ottominer - INFO - Available disk space: 146.89 GB
+2024-10-31 09:17:42,289 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_integration0\test_0.pdf
+2024-10-31 09:17:42,289 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_integration0\test_1.pdf
+2024-10-31 09:17:42,289 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_integration0\test_0.pdf
+2024-10-31 09:17:42,289 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_integration0\test_1.pdf
+2024-10-31 09:17:42,290 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_integration0\test_2.pdf
+2024-10-31 09:17:42,290 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-3\test_integration0\test_2.pdf
+2024-10-31 09:17:42,295 - ottominer.extractors.pdf - INFO - Saved output to: output\test_0.md
+2024-10-31 09:17:42,295 - ottominer.extractors.pdf - INFO - Saved output to: output\test_0.md
+2024-10-31 09:17:42,300 - ottominer.extractors.pdf - INFO - Saved output to: output\test_2.md
+2024-10-31 09:17:42,300 - ottominer.extractors.pdf - INFO - Saved output to: output\test_2.md
+2024-10-31 09:17:42,301 - ottominer.extractors.pdf - INFO - Saved output to: output\test_1.md
+2024-10-31 09:17:42,301 - ottominer.extractors.pdf - INFO - Saved output to: output\test_1.md
+2024-10-31 09:17:42,315 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:17:42,315 - ottominer - INFO - Available memory: 41.67 GB
+2024-10-31 09:17:42,315 - ottominer - INFO - Available disk space: 146.89 GB
+2024-10-31 09:17:42,338 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:17:42,339 - ottominer - INFO - Available memory: 41.67 GB
+2024-10-31 09:17:42,339 - ottominer - INFO - Available disk space: 146.89 GB
+2024-10-31 09:17:42,345 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:17:42,346 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:17:42,346 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:19:12,360 - ottominer.extractors.base - ERROR - file does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:19:12,360 - ottominer.extractors.base - ERROR - file does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:19:12,412 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_validate_file_not_file0
+2024-10-31 09:19:12,412 - ottominer.extractors.base - ERROR - file is not a valid file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_validate_file_not_file0
+2024-10-31 09:19:12,416 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_single_pdf0\test.pdf
+2024-10-31 09:19:12,416 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_single_pdf0\test.pdf
+2024-10-31 09:19:12,431 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:19:12,431 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:19:12,438 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:19:12,438 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:19:12,441 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:19:12,441 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:19:12,441 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:19:12,441 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:19:12,441 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:19:12,451 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:19:12,452 - ottominer - INFO - Available memory: 41.43 GB
+2024-10-31 09:19:12,452 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:19:12,453 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_batch_extract0\test_0.pdf
+2024-10-31 09:19:12,453 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_batch_extract0\test_0.pdf
+2024-10-31 09:19:12,453 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_batch_extract0\test_1.pdf
+2024-10-31 09:19:12,453 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_batch_extract0\test_2.pdf
+2024-10-31 09:19:12,453 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_batch_extract0\test_1.pdf
+2024-10-31 09:19:12,453 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_batch_extract0\test_2.pdf
+2024-10-31 09:19:12,468 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_2.md
+2024-10-31 09:19:12,468 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_2.md
+2024-10-31 09:19:12,468 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_0.md
+2024-10-31 09:19:12,468 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_1.md
+2024-10-31 09:19:12,468 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_0.md
+2024-10-31 09:19:12,468 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test_1.md
+2024-10-31 09:19:12,477 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:19:12,477 - ottominer - INFO - Available memory: 41.43 GB
+2024-10-31 09:19:12,477 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:19:12,482 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_integration0\test_0.pdf
+2024-10-31 09:19:12,482 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_integration0\test_0.pdf
+2024-10-31 09:19:12,490 - ottominer.extractors.pdf - INFO - Saved output to: output\test_0.md
+2024-10-31 09:19:12,490 - ottominer.extractors.pdf - INFO - Saved output to: output\test_0.md
+2024-10-31 09:19:12,497 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:19:12,497 - ottominer - INFO - Available memory: 41.43 GB
+2024-10-31 09:19:12,497 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:19:12,498 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_integration0\test_0.pdf
+2024-10-31 09:19:12,498 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_integration0\test_1.pdf
+2024-10-31 09:19:12,498 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_integration0\test_0.pdf
+2024-10-31 09:19:12,498 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_integration0\test_2.pdf
+2024-10-31 09:19:12,498 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_integration0\test_1.pdf
+2024-10-31 09:19:12,498 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-4\test_integration0\test_2.pdf
+2024-10-31 09:19:12,504 - ottominer.extractors.pdf - INFO - Saved output to: output\test_0.md
+2024-10-31 09:19:12,504 - ottominer.extractors.pdf - INFO - Saved output to: output\test_0.md
+2024-10-31 09:19:12,509 - ottominer.extractors.pdf - INFO - Saved output to: output\test_2.md
+2024-10-31 09:19:12,509 - ottominer.extractors.pdf - INFO - Saved output to: output\test_2.md
+2024-10-31 09:19:12,509 - ottominer.extractors.pdf - INFO - Saved output to: output\test_1.md
+2024-10-31 09:19:12,509 - ottominer.extractors.pdf - INFO - Saved output to: output\test_1.md
+2024-10-31 09:19:12,525 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:19:12,525 - ottominer - INFO - Available memory: 41.43 GB
+2024-10-31 09:19:12,525 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:19:12,548 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:19:12,548 - ottominer - INFO - Available memory: 41.43 GB
+2024-10-31 09:19:12,548 - ottominer - INFO - Available disk space: 146.87 GB
+2024-10-31 09:19:12,555 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:19:12,555 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:19:12,555 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:20:25,675 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:20:25,675 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:20:25,677 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_validate_file_not_file0
+2024-10-31 09:20:25,677 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_validate_file_not_file0
+2024-10-31 09:20:25,679 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:20:25,679 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:21:15,523 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\cilt_1_1900.md
+2024-10-31 09:21:15,523 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\cilt_1_1900.md
+2024-10-31 09:21:15,532 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:21:15,532 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:21:15,534 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:21:15,534 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:21:15,534 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:21:15,534 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:21:15,534 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-5\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:21:15,541 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:21:15,541 - ottominer - INFO - Available memory: 41.43 GB
+2024-10-31 09:21:15,541 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:21:15,542 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:21:15,542 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:22:04,411 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\cilt_1_1900.md
+2024-10-31 09:22:04,411 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\cilt_1_1900.md
+2024-10-31 09:22:04,420 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:22:04,420 - ottominer - INFO - Available memory: 41.41 GB
+2024-10-31 09:22:04,420 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:22:04,421 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:22:04,421 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:22:53,863 - ottominer.extractors.pdf - INFO - Saved output to: output\cilt_1_1900.md
+2024-10-31 09:22:53,863 - ottominer.extractors.pdf - INFO - Saved output to: output\cilt_1_1900.md
+2024-10-31 09:22:53,869 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:22:53,870 - ottominer - INFO - Available memory: 41.27 GB
+2024-10-31 09:22:53,870 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:22:53,871 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:22:53,871 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:23:42,975 - ottominer.extractors.pdf - INFO - Saved output to: output\cilt_1_1900.md
+2024-10-31 09:23:42,975 - ottominer.extractors.pdf - INFO - Saved output to: output\cilt_1_1900.md
+2024-10-31 09:23:59,325 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:23:59,325 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:23:59,327 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_validate_file_not_file0
+2024-10-31 09:23:59,327 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_validate_file_not_file0
+2024-10-31 09:23:59,329 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:23:59,329 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:24:48,823 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\cilt_1_1900.md
+2024-10-31 09:24:48,823 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\cilt_1_1900.md
+2024-10-31 09:24:48,837 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:24:48,837 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:24:48,838 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:24:48,838 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:24:48,839 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:24:48,839 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:24:48,839 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-6\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:24:48,847 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:24:48,847 - ottominer - INFO - Available memory: 41.30 GB
+2024-10-31 09:24:48,847 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:24:48,847 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:24:48,847 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:25:38,394 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\cilt_1_1900.md
+2024-10-31 09:25:38,394 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\cilt_1_1900.md
+2024-10-31 09:26:36,011 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:26:36,011 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:26:36,013 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_validate_file_not_file0
+2024-10-31 09:26:36,013 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_validate_file_not_file0
+2024-10-31 09:26:36,017 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_single_pdf0\small_test.pdf
+2024-10-31 09:26:36,017 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_single_pdf0\small_test.pdf
+2024-10-31 09:26:36,030 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\small_test.md
+2024-10-31 09:26:36,030 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\small_test.md
+2024-10-31 09:26:36,040 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:26:36,040 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:26:36,041 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:26:36,041 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:26:36,042 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:26:36,042 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:26:36,042 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:26:36,050 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:26:36,050 - ottominer - INFO - Available memory: 41.65 GB
+2024-10-31 09:26:36,050 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:26:36,051 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_batch_extract0\small_test.pdf
+2024-10-31 09:26:36,051 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-7\test_batch_extract0\small_test.pdf
+2024-10-31 09:26:36,063 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\small_test.md
+2024-10-31 09:26:36,063 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\small_test.md
+2024-10-31 09:26:36,070 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:26:36,071 - ottominer - INFO - Available memory: 41.65 GB
+2024-10-31 09:26:36,071 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:26:36,072 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:26:36,072 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:27:25,409 - ottominer.extractors.pdf - INFO - Saved output to: output\cilt_1_1900.md
+2024-10-31 09:27:25,409 - ottominer.extractors.pdf - INFO - Saved output to: output\cilt_1_1900.md
+2024-10-31 09:27:25,419 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:27:25,419 - ottominer - INFO - Available memory: 41.55 GB
+2024-10-31 09:27:25,419 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:27:25,420 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:27:25,420 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:28:15,210 - ottominer.extractors.pdf - INFO - Saved output to: output\cilt_1_1900.md
+2024-10-31 09:28:15,210 - ottominer.extractors.pdf - INFO - Saved output to: output\cilt_1_1900.md
+2024-10-31 09:28:39,547 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:28:39,547 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:28:39,551 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_validate_file_not_file0
+2024-10-31 09:28:39,551 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_validate_file_not_file0
+2024-10-31 09:28:39,555 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_single_pdf0\test.pdf
+2024-10-31 09:28:39,555 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_single_pdf0\test.pdf
+2024-10-31 09:28:39,571 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:28:39,571 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:28:39,579 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:28:39,579 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:28:39,580 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:28:39,580 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:28:39,581 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:28:39,581 - ottominer.extractors.pdf - ERROR - Error processing C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:28:39,581 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:28:39,593 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:28:39,593 - ottominer - INFO - Available memory: 41.68 GB
+2024-10-31 09:28:39,593 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:28:39,594 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_batch_extract0\test.pdf
+2024-10-31 09:28:39,594 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_batch_extract0\test.pdf
+2024-10-31 09:28:39,594 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_batch_extract0\test.pdf
+2024-10-31 09:28:39,594 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_batch_extract0\test.pdf
+2024-10-31 09:28:39,595 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_batch_extract0\test.pdf
+2024-10-31 09:28:39,595 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-8\test_batch_extract0\test.pdf
+2024-10-31 09:28:39,616 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:28:39,616 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:28:39,618 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:28:39,618 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:28:39,618 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:28:39,618 - ottominer.extractors.pdf - INFO - Saved output to: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\output\extracted\test.md
+2024-10-31 09:28:39,685 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:28:39,685 - ottominer - INFO - Available memory: 41.69 GB
+2024-10-31 09:28:39,685 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:28:39,687 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:28:39,687 - ottominer.extractors.pdf - INFO - Processing PDF: C:\Users\Administrator\Desktop\cook\Ottoman-NLP\ottominer-public\ottominer\tests\cilt_1_1900.pdf
+2024-10-31 09:30:40,426 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-9\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:30:40,426 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-9\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:30:40,429 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-9\test_validate_file_not_file0
+2024-10-31 09:30:40,429 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-9\test_validate_file_not_file0
+2024-10-31 09:30:40,450 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-9\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-9\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:30:40,450 - ottominer.extractors.base - ERROR - Error converting C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-9\test_extract_invalid_pdf0\invalid.pdf: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-9\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:30:40,451 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-9\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:30:40,462 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:30:40,462 - ottominer - INFO - Available memory: 41.35 GB
+2024-10-31 09:30:40,462 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:30:40,485 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:30:40,485 - ottominer - INFO - Available memory: 41.35 GB
+2024-10-31 09:30:40,485 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:30:40,503 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:30:40,504 - ottominer - INFO - Available memory: 41.35 GB
+2024-10-31 09:30:40,504 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:30:40,530 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:30:40,530 - ottominer - INFO - Available memory: 41.35 GB
+2024-10-31 09:30:40,530 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:30:40,558 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:30:40,558 - ottominer - INFO - Available memory: 41.35 GB
+2024-10-31 09:30:40,558 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:30:40,565 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:30:40,566 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:30:40,566 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:37:10,590 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:37:10,590 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:37:10,594 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_validate_file_not_file0
+2024-10-31 09:37:10,594 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_validate_file_not_file0
+2024-10-31 09:37:10,598 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:37:10,752 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:37:10,787 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:37:10,787 - ottominer - INFO - Available memory: 41.20 GB
+2024-10-31 09:37:10,787 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:37:10,788 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:37:10,788 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:37:10,789 - ottominer.extractors.base - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_batch_extract0\test_0.pdf: Only one live display may be active at once
+2024-10-31 09:37:10,789 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:37:10,789 - ottominer.extractors.base - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_batch_extract0\test_0.pdf: Only one live display may be active at once
+2024-10-31 09:37:10,797 - ottominer.extractors.base - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_batch_extract0\test_1.pdf: Only one live display may be active at once
+2024-10-31 09:37:10,797 - ottominer.extractors.base - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_batch_extract0\test_1.pdf: Only one live display may be active at once
+2024-10-31 09:37:10,797 - ottominer.extractors.base - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_batch_extract0\test_2.pdf: Only one live display may be active at once
+2024-10-31 09:37:10,797 - ottominer.extractors.base - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-10\test_batch_extract0\test_2.pdf: Only one live display may be active at once
+2024-10-31 09:37:10,808 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:37:10,808 - ottominer - INFO - Available memory: 41.20 GB
+2024-10-31 09:37:10,808 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:37:10,814 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:37:10,884 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:37:10,884 - ottominer - INFO - Available memory: 41.20 GB
+2024-10-31 09:37:10,884 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:37:10,898 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:37:10,898 - ottominer - INFO - Available memory: 41.20 GB
+2024-10-31 09:37:10,900 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:37:10,906 - ottominer.extractors.parallel - WARNING - Could not calculate similarity - texts too different
+2024-10-31 09:37:10,907 - ottominer.extractors.parallel - WARNING - Could not calculate similarity - texts too different
+2024-10-31 09:37:10,907 - ottominer.extractors.parallel - WARNING - Could not calculate similarity - texts too different
+2024-10-31 09:37:10,908 - ottominer.extractors.parallel - WARNING - Could not calculate similarity - texts too different
+2024-10-31 09:37:10,916 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:37:10,916 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:37:10,916 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:38:47,934 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-11\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:38:47,934 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-11\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:38:47,936 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-11\test_validate_file_not_file0
+2024-10-31 09:38:47,936 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-11\test_validate_file_not_file0
+2024-10-31 09:38:47,958 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: to_markdown() got an unexpected keyword argument 'extract_images'
+2024-10-31 09:38:47,958 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: to_markdown() got an unexpected keyword argument 'extract_images'
+2024-10-31 09:38:47,960 - ottominer - ERROR - Error in extract: to_markdown() got an unexpected keyword argument 'extract_images'
+2024-10-31 09:38:48,080 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-11\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:38:48,080 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-11\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:38:48,082 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-11\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:38:48,094 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:38:48,094 - ottominer - INFO - Available memory: 41.34 GB
+2024-10-31 09:38:48,094 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:38:48,095 - ottominer - ERROR - Error in batch_extract: 'ProgressTracker' object does not support the context manager protocol
+2024-10-31 09:38:48,109 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:38:48,110 - ottominer - INFO - Available memory: 41.34 GB
+2024-10-31 09:38:48,110 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:38:48,124 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: to_markdown() got an unexpected keyword argument 'pdf_extraction'
+2024-10-31 09:38:48,124 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: to_markdown() got an unexpected keyword argument 'pdf_extraction'
+2024-10-31 09:38:48,125 - ottominer - ERROR - Error in extract: to_markdown() got an unexpected keyword argument 'pdf_extraction'
+2024-10-31 09:38:48,145 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:38:48,145 - ottominer - INFO - Available memory: 41.34 GB
+2024-10-31 09:38:48,145 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:38:48,163 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:38:48,163 - ottominer - INFO - Available memory: 41.34 GB
+2024-10-31 09:38:48,163 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:38:48,177 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:38:48,177 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:38:48,177 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:39:49,776 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-12\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:39:49,776 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-12\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:39:49,778 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-12\test_validate_file_not_file0
+2024-10-31 09:39:49,778 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-12\test_validate_file_not_file0
+2024-10-31 09:39:49,797 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-12\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:39:49,797 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-12\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:39:49,799 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-12\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:39:49,809 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:39:49,809 - ottominer - INFO - Available memory: 41.15 GB
+2024-10-31 09:39:49,809 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:39:49,810 - ottominer - ERROR - Error in batch_extract: 'Progress' object has no attribute 'task'
+2024-10-31 09:39:49,927 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:39:49,927 - ottominer - INFO - Available memory: 41.15 GB
+2024-10-31 09:39:49,927 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:39:49,948 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:39:49,948 - ottominer - INFO - Available memory: 41.15 GB
+2024-10-31 09:39:49,948 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:39:49,949 - ottominer - ERROR - Error in batch_extract: 'Progress' object has no attribute 'task'
+2024-10-31 09:39:49,971 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:39:49,972 - ottominer - INFO - Available memory: 41.15 GB
+2024-10-31 09:39:49,972 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:39:49,987 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:39:49,987 - ottominer - INFO - Available memory: 41.15 GB
+2024-10-31 09:39:49,987 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:39:50,002 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:39:50,002 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:39:50,002 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:41:04,982 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:41:04,982 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:41:04,984 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_validate_file_not_file0
+2024-10-31 09:41:04,984 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_validate_file_not_file0
+2024-10-31 09:41:05,008 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:41:05,008 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:41:05,008 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:41:05,021 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:41:05,021 - ottominer - INFO - Available memory: 41.03 GB
+2024-10-31 09:41:05,021 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:41:05,023 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:41:05,024 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:41:05,024 - ottominer.extractors.pdf - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_batch_extract0\test_1.pdf: Only one live display may be active at once
+2024-10-31 09:41:05,024 - ottominer.extractors.pdf - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_batch_extract0\test_1.pdf: Only one live display may be active at once
+2024-10-31 09:41:05,024 - ottominer.extractors.pdf - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_batch_extract0\test_2.pdf: Only one live display may be active at once
+2024-10-31 09:41:05,024 - ottominer.extractors.pdf - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_batch_extract0\test_2.pdf: Only one live display may be active at once
+2024-10-31 09:41:05,152 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:41:05,152 - ottominer - INFO - Available memory: 41.03 GB
+2024-10-31 09:41:05,152 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:41:05,183 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:41:05,183 - ottominer - INFO - Available memory: 41.03 GB
+2024-10-31 09:41:05,183 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:41:05,185 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:41:05,185 - ottominer - ERROR - Error in extract: Only one live display may be active at once
+2024-10-31 09:41:05,185 - ottominer.extractors.pdf - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_integration0\test_1.pdf: Only one live display may be active at once
+2024-10-31 09:41:05,185 - ottominer.extractors.pdf - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_integration0\test_1.pdf: Only one live display may be active at once
+2024-10-31 09:41:05,186 - ottominer.extractors.pdf - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_integration0\test_2.pdf: Only one live display may be active at once
+2024-10-31 09:41:05,186 - ottominer.extractors.pdf - ERROR - Failed to process C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-13\test_integration0\test_2.pdf: Only one live display may be active at once
+2024-10-31 09:41:05,212 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:41:05,212 - ottominer - INFO - Available memory: 41.03 GB
+2024-10-31 09:41:05,212 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:41:05,226 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:41:05,226 - ottominer - INFO - Available memory: 41.03 GB
+2024-10-31 09:41:05,226 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:41:06,245 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:41:06,245 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:41:06,245 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:42:10,424 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-14\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:42:10,424 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-14\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:42:10,425 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-14\test_validate_file_not_file0
+2024-10-31 09:42:10,425 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-14\test_validate_file_not_file0
+2024-10-31 09:42:10,445 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-14\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:42:10,445 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-14\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:42:10,445 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-14\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:42:10,620 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:42:10,620 - ottominer - INFO - Available memory: 41.13 GB
+2024-10-31 09:42:10,620 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:42:10,635 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:42:10,635 - ottominer - INFO - Available memory: 41.13 GB
+2024-10-31 09:42:10,635 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:42:11,655 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:42:11,655 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:42:11,655 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:43:15,831 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-15\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:43:15,831 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-15\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:43:15,833 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-15\test_validate_file_not_file0
+2024-10-31 09:43:15,833 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-15\test_validate_file_not_file0
+2024-10-31 09:43:15,853 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-15\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:43:15,853 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-15\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:43:15,854 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-15\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:43:16,010 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:43:16,010 - ottominer - INFO - Available memory: 41.21 GB
+2024-10-31 09:43:16,010 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:43:16,023 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:43:16,023 - ottominer - INFO - Available memory: 41.21 GB
+2024-10-31 09:43:16,023 - ottominer - INFO - Available disk space: 146.85 GB
+2024-10-31 09:43:17,041 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:43:17,041 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:43:17,041 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:44:09,674 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-16\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:44:09,674 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-16\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:44:09,676 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-16\test_validate_file_not_file0
+2024-10-31 09:44:09,676 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-16\test_validate_file_not_file0
+2024-10-31 09:44:09,696 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-16\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:44:09,696 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-16\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:44:09,697 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-16\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:44:09,862 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:44:09,862 - ottominer - INFO - Available memory: 40.96 GB
+2024-10-31 09:44:09,862 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:44:09,878 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:44:09,878 - ottominer - INFO - Available memory: 40.96 GB
+2024-10-31 09:44:09,878 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:44:10,898 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:44:10,898 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:44:10,898 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:44:55,832 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-17\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:44:55,832 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-17\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:44:55,834 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-17\test_validate_file_not_file0
+2024-10-31 09:44:55,834 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-17\test_validate_file_not_file0
+2024-10-31 09:44:55,854 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-17\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:44:55,854 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-17\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:44:55,854 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-17\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:44:55,872 - ottominer.utils.progress - WARNING - Error stopping progress: 'list' object has no attribute 'items'
+2024-10-31 09:44:55,887 - ottominer - ERROR - Error in batch_extract: Only one live display may be active at once
+2024-10-31 09:44:56,022 - ottominer.utils.progress - WARNING - Error stopping progress: 'list' object has no attribute 'items'
+2024-10-31 09:44:56,036 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:44:56,036 - ottominer - INFO - Available memory: 41.06 GB
+2024-10-31 09:44:56,036 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:44:56,051 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:44:56,052 - ottominer - INFO - Available memory: 41.06 GB
+2024-10-31 09:44:56,052 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:44:56,117 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:44:56,117 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:44:56,117 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:45:21,346 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-18\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:45:21,346 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-18\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:45:21,348 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-18\test_validate_file_not_file0
+2024-10-31 09:45:21,348 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-18\test_validate_file_not_file0
+2024-10-31 09:45:21,366 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-18\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:45:21,366 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-18\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:45:21,366 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-18\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:45:21,382 - ottominer.utils.progress - WARNING - Error stopping progress: 'list' object has no attribute 'items'
+2024-10-31 09:45:21,401 - ottominer - ERROR - Error in batch_extract: Only one live display may be active at once
+2024-10-31 09:45:21,539 - ottominer.utils.progress - WARNING - Error stopping progress: 'list' object has no attribute 'items'
+2024-10-31 09:45:21,549 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:45:21,549 - ottominer - INFO - Available memory: 41.31 GB
+2024-10-31 09:45:21,549 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:45:21,568 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:45:21,568 - ottominer - INFO - Available memory: 41.31 GB
+2024-10-31 09:45:21,568 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:45:21,603 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:45:21,604 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:45:21,604 - ottominer - INFO - Available disk space: 100.00 GB
+2024-10-31 09:46:17,786 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-19\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:46:17,786 - ottominer.extractors.base - ERROR - File does not exist: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-19\test_validate_file_not_exists0\nonexistent.pdf
+2024-10-31 09:46:17,788 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-19\test_validate_file_not_file0
+2024-10-31 09:46:17,788 - ottominer.extractors.base - ERROR - Path is not a file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-19\test_validate_file_not_file0
+2024-10-31 09:46:17,806 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-19\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:46:17,806 - ottominer.extractors.pdf - ERROR - Error converting PDF to markdown: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-19\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:46:17,807 - ottominer - ERROR - Error in extract: Invalid or corrupted PDF file: C:\Users\Administrator\AppData\Local\Temp\pytest-of-Administrator\pytest-19\test_extract_invalid_pdf0\invalid.pdf
+2024-10-31 09:46:18,272 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:46:18,272 - ottominer - INFO - Available memory: 41.15 GB
+2024-10-31 09:46:18,272 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:46:18,288 - ottominer - INFO - Available CPU cores: 32
+2024-10-31 09:46:18,288 - ottominer - INFO - Available memory: 41.15 GB
+2024-10-31 09:46:18,288 - ottominer - INFO - Available disk space: 146.86 GB
+2024-10-31 09:46:18,509 - ottominer - INFO - Available CPU cores: 8
+2024-10-31 09:46:18,509 - ottominer - INFO - Available memory: 8.00 GB
+2024-10-31 09:46:18,509 - ottominer - INFO - Available disk space: 100.00 GB

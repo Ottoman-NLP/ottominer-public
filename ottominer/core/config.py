@@ -32,10 +32,14 @@ class Config:
             'default_data_dir': str(env.FDATA_DIR),
             'completion_enabled': True,
             'pdf_extraction': {
-                'batch_size': 100,
-                'workers': os.cpu_count() or 1,
-                'timeout': 300,
-                'max_retries': 3
+                'extract_images': False,
+                'dpi': 300,
+                'margins': (50, 50, 0, 0),
+                'table_strategy': 'lines_strict',
+                'fontsize_limit': 4,
+                'workers': 4,
+                'output_dir': str(env.OUTPUT_DIR / 'extracted'),
+                'batch_size': 100
             },
             'analysis': {
                 'cache_results': True,
@@ -43,7 +47,7 @@ class Config:
             },
             'logging': {
                 'level': 'INFO',
-                'file_rotation': '1 week'
+                'name': 'ottominer'
             }
         }
         

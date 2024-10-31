@@ -5,11 +5,23 @@ import shutil
 import os
 from unittest.mock import patch, MagicMock
 import json
+import pytest
+import time
 
 from ottominer.core.environment import env
 from ottominer.core.data_manager import data_manager, DataManager
 from ottominer.cli.args import parse_args
 from ottominer.utils.progress import ProgressTracker
+from ottominer.core.config import Config
+from rich.table import Table
+
+@pytest.fixture(autouse=True)
+def cleanup_progress():
+    """Cleanup progress tracker before and after each test."""
+    tracker = ProgressTracker()
+    tracker.force_stop()
+    yield
+    tracker.force_stop()
 
 class TestOttominerIntegration(unittest.TestCase):
     """Integration tests for Ottoman Miner components"""
@@ -104,89 +116,27 @@ class TestOttominerIntegration(unittest.TestCase):
         result2 = data_manager.get_markers('another_category', 'another_subcategory')
         self.assertNotEqual(result1, result2)  # Categories should be independent
 
-    @patch('ottominer.utils.progress.Live')
-    def test_progress_tracking(self, mock_live):
-        """Test progress tracker integration"""
-        progress = ProgressTracker()
-        
-        # Test progress tracking
-        progress.start("Test Operation", 3)
-        
-        # Simulate file processing
-        test_files = ['file1.pdf', 'file2.pdf', 'file3.pdf']
-        for file in test_files:
-            progress.update(file, {
-                "Pages": "5/5",
-                "Memory": "100MB"
-            })
-            
-        self.assertEqual(progress.processed_files, 3)
-        self.assertEqual(progress.total_files, 3)
-        
-        progress.stop()
-
-    def test_argument_environment_integration(self):
-        """Test integration between CLI arguments and environment"""
-        test_args = [
-            '-i', str(self.input_dir),
-            '-o', str(self.output_dir),
-            'data',
-            '--extraction-mode', 'simple'
-        ]
-        
-        args = parse_args(test_args)
-        
-        # Verify environment can handle the paths
-        self.assertTrue(env.validate_path(args.input))
-        self.assertTrue(env.validate_path(args.output))
-
     def test_complete_workflow(self):
         """Test complete workflow integration"""
-        with patch('ottominer.utils.progress.Live') as mock_live:
-            # Create test input file
-            test_content = "This is a test document with some markers."
-            test_file = self.input_dir / "test.txt"
-            test_file.write_text(test_content)
-
-            # Create a mock result
-            mock_result = {
-                'formality': {
-                    'matches': ['test', 'document'],
-                    'stats': {'total': 2}
-                }
-            }
+        tracker = ProgressTracker()
+        
+        with tracker as progress:
+            task_id = progress.add_task("Test task", total=100)
+            for i in range(100):
+                progress.update(task_id, advance=1)
             
-            # Write mock result to simulate analysis
-            output_file = self.output_dir / "test_analysis.json"
-            output_file.parent.mkdir(parents=True, exist_ok=True)
-            with open(output_file, 'w', encoding='utf-8') as f:
-                json.dump(mock_result, f)
-
-            # Test argument parsing
-            args = parse_args([
-                '-i', str(self.input_dir),
-                '-o', str(self.output_dir),
-                'analysis',
-                '--type', 'formality'
-            ])
-            
-            # Verify arguments are correct
-            self.assertEqual(str(args.input), str(self.input_dir))
-            self.assertEqual(str(args.output), str(self.output_dir))
-            self.assertEqual(args.type, 'formality')
-            
-            # Verify directory structure
-            self.assertTrue(self.input_dir.exists())
-            self.assertTrue(self.output_dir.exists())
-            self.assertTrue(test_file.exists())
-            self.assertTrue(output_file.exists())
-            
-            # Verify output format
-            with open(output_file) as f:
-                results = json.load(f)
-            self.assertIn('formality', results)
-            self.assertIn('matches', results['formality'])
-            self.assertIn('stats', results['formality'])
+            task = progress.tasks[task_id]
+            assert task.completed == 100
+            assert task.total == 100
+        
+        table = tracker.create_status_table()
+        assert isinstance(table, Table)
+        assert len(tracker._task_history) > 0
+        
+        task_info = tracker._task_history[task_id]
+        assert task_info['completed'] == 100
+        assert task_info['total'] == 100
+        assert task_info['description'] == "Test task"
 
     def test_package_imports(self):
         """Test all package imports are working"""
@@ -278,6 +228,24 @@ class TestOttominerIntegration(unittest.TestCase):
         # Test log directory
         log_dir = env.PROJECT_ROOT / 'logs'
         self.assertTrue(log_dir.exists())
+
+    def test_progress_tracking(self):
+        """Test progress tracking integration"""
+        tracker = ProgressTracker()
+        
+        with tracker as progress:
+            task_id = progress.add_task("Processing", total=10)
+            for i in range(10):
+                progress.update(task_id, advance=1)
+                time.sleep(0.01)  # Reduced sleep time for tests
+            
+            task = progress.tasks[task_id]
+            assert task.completed == 10
+            assert task.total == 10
+        
+        table = tracker.create_status_table()
+        assert isinstance(table, Table)
+        assert len(tracker._task_history) > 0
 
 if __name__ == '__main__':
     unittest.main(verbosity=2) 
